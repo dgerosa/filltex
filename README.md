@@ -33,11 +33,11 @@ Clone the reposotory and `cd` into your repo directory. Make the content of the 
 
 and add it to your path
  
-    PATH=$PATH:~/REPO_DIRECTORY/bin/
+    PATH=$PATH:~/REPO_DIRECTORY/bin
    
 You may want to add this command to your `.bashrc` to avoid repeating it
     
-    echo "PATH=$PATH:~/REPO_DIRECTORY/bin/" >> ${HOME}/.bashrc
+    echo "PATH=$PATH:~/REPO_DIRECTORY/bin" >> ${HOME}/.bashrc
    
    
 ## Script usage
