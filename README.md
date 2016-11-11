@@ -77,9 +77,11 @@ I use the TexShop editor, so I wrote an implementation of `filltex` into it. If 
 
 ## Known limitations
 
+  - Treating eprints with ADS is tricky because when an eprint gets published they change the database key! For instance, it switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing a prepreint which is not yes published, everything is fine: only the arxiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the key for the arxiv version (e.g. `2016arXiv160203837T`) and the key for the published version (e.g. `2016PhRvL.116f1102A`) will point to the published version! If you have a paper with citations to both, they will be treated as two identical records and the same reference will appear twice in the list. To avoid the issue, always use the published-paper key if a published version is indexed in ADS. INSPIRE doesn't have this problem, because they don't change the cite key when a paper get published.
+
+
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies, because you're not going to need them with this script: one paper, one bibliography.
 
-  - eprints in ADS are tricky. When an eprint get published they change the cite key, but and ADS search now points to the published version. This means that if you have a old arXiv reference, my script will like to store it with a different records. I fixed this now: this is a published paper \cite{2010PhRvD..81h4054K} and this is its arXiv version \cite{2010arXiv1002.2643K}. It will appear twice in the bibliography, that's unavoidable because the script can't know that the paper is the same if it appears with two different (both allowed!) keys. INSPIRE doesn't have this problem, because they don't change the cite key when a paper get published.
 
 
 ### Credits
