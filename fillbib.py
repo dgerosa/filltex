@@ -61,6 +61,11 @@ for c in cites:
 
             try:
                 bib = "@"+commands.getstatusoutput('curl "http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode='+c+'&data_type=BIBTEX&db_key=AST&nocookieset=1"')[1].split("@")[1]
+
+                if 'arXiv' in c: # Take care of preprint on ADS
+                    bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
+
+
                 bibtex.write(bib)
                 print "ADS Found:", c
             except:
