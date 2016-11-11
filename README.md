@@ -38,9 +38,17 @@ and add it to your path
 You may want to add this command to your `.bashrc` to avoid repeating it
     
     echo "PATH=$PATH:~/REPO_DIRECTORY/bin" >> ${HOME}/.bashrc
+  
+Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to use this features, copy
+
+    cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
    
+This will work only if the path is updated in your `.bashrc`, see above. You might need to sudo the above command.
+
    
-## Script usage
+## Usage
+
+### fillbib (script)
 
 ***`fillbib`*** looks for citations into a `.aux` file and create/update a `.bib` with the records foun on ADS and INSPIRE.
 Usage:
@@ -50,6 +58,8 @@ Usage:
 The second argument `<bib file>` can be omitted, and the code will scan the `.aux` file to guess the name of your bibliography file.
 Arguments can be with or without extension, and the script is smart enough to figure it out. 
 You need the `.aux` file already. If you don't have it, run `pdflatex` once.
+
+### filltex (script)
 
 ***`filltex`*** the whole thing: compile latex, fill the bibliography and gives you a pdf. Usage:
 
@@ -61,6 +71,9 @@ Since ADS bibliography items contains journal abbreviations, you need to use `aa
 
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document.
 
+### TexShop
+
+I use the TexShop editor, so I wrote an implementation of `filltex` into it. If you copied the `filltex.engine` file as written above, just open your paper with TexShop and select ***filltex*** from the menu on the left. Now automagically compile your paper with `Typeset` or cmd-T.
 
 ## Known limitations
 
