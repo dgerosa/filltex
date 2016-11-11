@@ -87,7 +87,7 @@ A short `text.tex` file is provided, where you can test this new way of writing 
 
 
 
-### Credits
+## Credits
 The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com).
 Please, report bugs to
 
