@@ -22,6 +22,9 @@ So, here is the deal:
   - The `filltex` bash script put everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
   - I also provide TexShop engines for mac users
 
+Of course, all of this works if your citations are specified in the ADS or INSPIRE format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys there's no way to get them from the databases.
+
+
 ## Installation
 
 Clone the reposotory and `cd` into your repo directory. Make the content of the `bin` directory executable
@@ -59,7 +62,6 @@ Since ADS bibliography items contains journal abbreviations, you need to use `aa
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document.
 
 
-
 ## Known limitations
 
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies, because you're not going to need them with this script: one paper, one bibliography.
@@ -73,5 +75,5 @@ Please, report bugs to
 
     dgerosa@caltech.edu
 
-The idea started from this `python` course taught by Michele Vallisneri at Caltech. I've started from [this example](http://www.vallis.org/salon/summary-2.html). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
+The idea started from this `python` course taught by Michele Vallisneri at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
 
