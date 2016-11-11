@@ -1,10 +1,12 @@
 #filltex
 
 Tools for astronomers, physicists and mac users to improve your Latex workflow. 
+
+
 I started this mainly because I hate going to the ADS or INSPIRE databases and cut&paste the bibliographic citations for each paper.
 
 
-## Why
+## Intro
 
 What happens when you compile a latex file? How's bibliography handled?
 
@@ -14,7 +16,7 @@ What happens when you compile a latex file? How's bibliography handled?
   4. Run `latex` again, which processes the `.bbl` into the compiled paper, and dumps the citation records into `.aux`.
   5. Finally run `latex` again, which puts the correct citation records into the paper.
 
-The commands you need to run are: pdflatex, bibtex, pdflatex, pdflatex. These, of course can be put into a bash script and done in one goal.
+The commands you need to run are: pdflatex, bibtex, pdflatex, pdflatex. These, of course can be put into a script and done in one goal.
 Here we also want to automatically solve the second point: looking for citations on [ADS](http://adsabs.harvard.edu) (if you're an astronomer), [INSPIRE](http://inspirehep.net) (if you're a theoretical physicists) or both of them (if you do gravitational waves).
 
 So, here is the deal:
