@@ -3,7 +3,7 @@
 Tools for astronomers, physicists and mac users to improve your Latex workflow. 
 
 
-I started this mainly because I hate going to the ADS or INSPIRE databases and cut&paste the bibliographic citations for each paper.
+I started this mainly because I hate going to the ADS or INSPIRE databases and cut&paste citations manually.
 
 
 ## Intro
