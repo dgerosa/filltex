@@ -1,6 +1,6 @@
 #filltex
 
-Tools for astronomers, physicists and mac users to improve your LaTex workflow: automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. I did this mainly because I hate going to the ADS or INSPIRE websites and cut&paste citations manually.
+Tools for astronomers, physicists and mac users to improve your LaTex workflow: automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually.
 
 
 ## Intro
@@ -20,9 +20,9 @@ So, here is the deal:
 
   - The `fillbib` python script queries both databases and create/update a `.bib` file without getting each record manually.
   - The `filltex` bash script put everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
-  - I also provide TexShop engines for mac users
+  - I also provide [TexShop](http://pages.uoregon.edu/koch/texshop) engines for mac users
 
-Of course, all of this works if your citations are specified in the ADS or INSPIRE format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys `\cite{amazing_paper}`there's no way to get them from a database.
+Of course, all of this works if your citations are specified in the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys `\cite{amazing_paper}`there's no way to get them from a database.
 
 
 ## Installation
@@ -71,7 +71,7 @@ At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which
 
 ### TexShop
 
-I use the TexShop editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with TexShop and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. The TexShop engin will work only if the path is updated in your `.bashrc`, see above. 
+I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. The [TexShop](http://pages.uoregon.edu/koch/texshop) engine will work only if the path is updated in your `.bashrc`, see above. 
 
 
 ### Test 
