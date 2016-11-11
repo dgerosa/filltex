@@ -14,7 +14,7 @@ What happens when you compile a LaTex file? How's bibliography handled?
   5. Finally run `pdflatex` again, which puts the correct citation records into the paper.
 
 The commands you need to run are: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. These, of course can be put into a script or a makefile and done in one goal.
-Here I also want to automatically solve the second point: looking for citations on [ADS](http://adsabs.harvard.edu) (if you're an astronomer), [INSPIRE](http://inspirehep.net) (if you're a theoretical physicists) or both of them (if you do gravitational waves).
+Here I also want to automatically solve the second point: looking for citations on [ADS](http://adsabs.harvard.edu) (if you're an astronomer), [INSPIRE](http://inspirehep.net) (if you're a theoretical physicist) or both of them (if you do gravitational waves).
 
 So, here is the deal:
 
