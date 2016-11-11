@@ -33,11 +33,11 @@ Clone the reposotory and `cd` into your repo directory. Make the content of the 
 
 and add it to your path
  
-    PATH=$PATH:~/REPO_DIRECTORY/bin
+    PATH=$PATH:$(pwd)/bin
    
 You can add this command to your `.bashrc`:
     
-    echo "PATH=$PATH:~/REPO_DIRECTORY/bin" >> ${HOME}/.bashrc
+    echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc
   
 Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to use this feature, run (might need sudo)
 
