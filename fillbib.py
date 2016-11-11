@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 '''
 Query the ADS and INSPIRE databases to collect the citations used in a LaTeX file into a BibTeX file
