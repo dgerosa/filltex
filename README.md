@@ -75,6 +75,11 @@ At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which
 
 I use the TexShop editor, so I wrote an implementation of `filltex` into it. If you copied the `filltex.engine` file as written above, just open your paper with TexShop and select ***filltex*** from the menu on the left. Now automagically compile your paper with `Typeset` or cmd-T.
 
+### Test 
+
+A short `text.tex` file is provided, where you can test your new way of writing papers!
+
+
 ## Known limitations
 
   - Treating eprints with ADS is tricky. When an eprint gets published they change the database key, but make the old key pointing to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing a prepreint which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the eprint key (e.g. `2016arXiv160203837T`) and published-version key (e.g. `2016PhRvL.116f1102A`) are available. If used, they will both point to the same published version! If you have a paper with citations to both, this will cause the same record to appear twice in the reference list. To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the cite key when a paper get published.
