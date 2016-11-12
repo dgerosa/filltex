@@ -43,7 +43,7 @@ Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and w
 
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
    
-If you want to give it a try,
+If you want to give it a try, you can run it on the `test.tex` file provided:
    
     cd test
     filltex test
