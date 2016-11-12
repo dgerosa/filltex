@@ -82,7 +82,7 @@ I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an
 
 ### Test 
 
-A short `text.tex` file is provided, where you can test this new way of writing papers!
+A short `test.tex` file is provided, where you can test this new way of writing papers!
 
 
 ## Known limitations
