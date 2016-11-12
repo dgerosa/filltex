@@ -43,6 +43,12 @@ Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and w
 
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
    
+If you want to give it a try,
+   
+    cd test
+    filltex test
+
+and you should get a filled `.bib` file and a finished `.pdf`.
    
 ## Usage
 
