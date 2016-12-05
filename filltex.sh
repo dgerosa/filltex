@@ -23,7 +23,7 @@ if grep -q 'aas_macros' ${FILE}.tex; then # check if you need them
 fi
 
 # The pdflatex command return 0 if everyting is ok, or 1 if he get an error. If there's an error, I want the script to exit.
-pdflatex -halt-on-error ${FILE}.tex
+pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Fill the bib fil with the ADS and INSPIRE references.
@@ -34,10 +34,10 @@ for file in *.aux ; do
     bibtex $file
 done
 
-pdflatex -halt-on-error ${FILE}.tex
+pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
-pdflatex -halt-on-error ${FILE}.tex
+pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Count the words
