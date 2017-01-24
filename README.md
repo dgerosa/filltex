@@ -1,6 +1,6 @@
 #filltex
 
-Automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. This is meant to be a tool for astronomers, physicists and mac users to improve your LaTex workflow. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually. 
+Automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. This is meant to be a tool for astronomers, physicists and mac users to improve your LaTex workflow. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually.
 
 
 ## Intro
@@ -27,29 +27,41 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ## Installation
 
-Clone the reposotory and `cd` into your repo directory. Make the content of the `bin` directory executable
+Clone the repository
+
+    git clone https://github.com/dgerosa/filltex.git
+
+and `cd` into your repo directory
+
+    cd filltex
+
+My script requires the program `realpath`. This should be there by default on most linux distributions. On mac, you can get if from [Homebrew](http://brew.sh/)
+
+    brew install coreutils
+
+Now, make the content of the `bin` directory executable
 
     chmod +x bin/*
 
 and add it to your path
- 
+
     PATH=$PATH:$(pwd)/bin
-   
+
 You can add this command to your `.bashrc`:
-    
+
     echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc
-  
+
 Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to use this feature, run (might need sudo)
 
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
-   
+
 If you want to give it a try, you can run it on the `test.tex` file provided:
-   
+
     cd test
     filltex test
 
 and you should get a filled `.bib` file and a finished `.pdf`.
-   
+
 ## Usage
 
 ### fillbib (script)
@@ -60,7 +72,7 @@ Usage:
     python fillbib.py precession <aux file> <bib file>
 
 The second argument `<bib file>` can be omitted, and the code will scan the `.aux` file to guess the name of your bibliography file.
-Arguments can be typed with or without extension, and the script is smart enough to figure it out. 
+Arguments can be typed with or without extension, and the script is smart enough to figure it out.
 You need to have `.aux` file already, not just the `.tex`. If you don't have it, run `pdflatex` once.
 
 ### filltex (script)
@@ -69,7 +81,7 @@ You need to have `.aux` file already, not just the `.tex`. If you don't have it,
 
     filltex <tex file>
 
-Argument can be with or without extension, and the script is smart enough to figure it out. 
+Argument can be with or without extension, and the script is smart enough to figure it out.
 
 Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` would download the file for you if you need it.
 
@@ -77,10 +89,10 @@ At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which
 
 ### TexShop
 
-I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. The [TexShop](http://pages.uoregon.edu/koch/texshop) engine will work only if the path is updated in your `.bashrc`, see above. 
+I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. The [TexShop](http://pages.uoregon.edu/koch/texshop) engine will work only if the path is updated in your `.bashrc`, see above.
 
 
-### Test 
+### Test
 
 A short `test.tex` file is provided, where you can test this new way of writing papers!
 
@@ -100,4 +112,3 @@ Please, report bugs to
     dgerosa@caltech.edu
 
 The idea started from this `python` course taught by Michele Vallisneri at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
-
