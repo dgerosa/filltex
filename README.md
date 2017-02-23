@@ -2,7 +2,7 @@
 
 Automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. This is meant to be a tool for astronomers, physicists and mac users to improve your LaTex workflow. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually.
 
-If you use this, consider dropping a citation to this github page in the the acks.
+If you use filltex for your paper, consider dropping a citation to this github page in the the acks.
 
 
 ## Intro
