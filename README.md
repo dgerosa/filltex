@@ -112,4 +112,4 @@ Please, report bugs to
 
     dgerosa@caltech.edu
 
-The idea started from this `python` course taught by Michele Vallisneri at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
+The idea started from [this](http://www.vallis.org/salon/) `python` course taught by Michele Vallisneri at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
