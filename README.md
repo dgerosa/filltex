@@ -86,7 +86,7 @@ Argument can be with or without extension, and the script is smart enough to fig
 
 Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` would download the file for you if you need it.
 
-At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document.
+At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document. 
 
 ### TexShop
 
@@ -112,4 +112,4 @@ Please, report bugs to
 
     dgerosa@caltech.edu
 
-The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
+The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. [TexCount](http://app.uio.no/ifi/texcount) may be already included in your Tex distribution; in case it's not, you can find it in this repository for convenience. Useful info on the INSPIRE API are available [here](https://inspirehep.net/info/hep/pub_list)
