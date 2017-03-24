@@ -70,7 +70,7 @@ and you should get a filled `.bib` file and a finished `.pdf`.
 ***`fillbib`*** looks for citations into a `.aux` file and create/update a `.bib` with the records foun on ADS and INSPIRE.
 Usage:
 
-    python fillbib.py precession <aux file> <bib file>
+    python fillbib.py <aux file> <bib file>
 
 The second argument `<bib file>` can be omitted, and the code will scan the `.aux` file to guess the name of your bibliography file.
 Arguments can be typed with or without extension, and the script is smart enough to figure it out.
