@@ -1,4 +1,4 @@
-#filltex
+# filltex
 
 Automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) to get reference records. This is meant to be a tool for astronomers, physicists and mac users to improve your LaTex workflow. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually.
 
