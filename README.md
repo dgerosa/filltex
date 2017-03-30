@@ -4,6 +4,8 @@
 
 If you use `filltex` for your paper, consider dropping a citation in the acknowledgemens.
 
+[![DOI](https://zenodo.org/badge/73505895.svg)](https://zenodo.org/badge/latestdoi/73505895)
+
 ## Intro
 
 What happens when you compile a LaTex file? How's bibliography handled?
