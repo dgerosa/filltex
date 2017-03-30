@@ -1,21 +1,22 @@
 # filltex
 
-Automatic queries to [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) databases to fill LaTex bibliography. `filltex` is meant to be a tool for astronomers, physicists and mac users to improve your LaTex workflow. I did this mainly because I hate going to the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) websites and cut&paste citations manually.
+ `filltex` is a simple tool to fill LaTex reference lists with records from the [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net)  databases. [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) are the most common databases used among the theoretical physics and astronomy scientific communities, respectively. `filltex` automatically looks for all citation labels present in a tex document and, by means of web-scraping, downloads  all the required citation records from either of the two databases. `filltex` significantly speeds up the LaTex scientific writing workflow, as all required actions (compile the tex file, fill the bibliography, compile the bibliography, compile the tex file again) are automated in a single command. We also provide an integration of 
+`filltex` for the macos LaTex editor TexShop.
 
-If you use filltex for your paper, consider dropping a citation to this github repository in the the acks.
+If you use `filltex` for your paper, consider dropping a citation to this github repository in the the acknowledgemens.
 
 ## Intro
 
 What happens when you compile a LaTex file? How's bibliography handled?
 
-  1. You first run `pdflatex` and all requested citation keys are dumped into a `.aux` file.
+  1. Run `pdflatex` and all requested citation keys are dumped into a `.aux` file.
   2. You **should** have the required entries in you `.bib` file.
   3. Run `bibtex`, which looks for citations inside the `.bib` file and writes the results into a `.bbl`.
   4. Run `pdflatex` again, which processes the `.bbl` into the compiled paper, and dumps the citation records into `.aux`.
   5. Finally run `pdflatex` again, which puts the correct citation records into the paper.
 
 The commands you need to run are: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. These, of course can be put into a script or a makefile and done in one goal.
-Here I also want to automatically solve the second point: looking for citations on [ADS](http://adsabs.harvard.edu) (if you're an astronomer), [INSPIRE](http://inspirehep.net) (if you're a theoretical physicist) or both of them (if you still have to find your true identity like me).
+`filltex` is meant to automatically solve the second point as well: look for citations on [ADS](http://adsabs.harvard.edu), [INSPIRE](http://inspirehep.net) or both.
 
 So, here is the deal:
 
@@ -67,7 +68,7 @@ and you should get a filled `.bib` file and a finished `.pdf`.
 
 ### fillbib (script)
 
-***`fillbib`*** looks for citations into a `.aux` file and create/update a `.bib` with the records foun on ADS and INSPIRE.
+***`fillbib`*** looks for citations into a `.aux` file and create/update a `.bib` with the records found on ADS and INSPIRE.
 Usage:
 
     python fillbib.py <aux file> <bib file>
@@ -78,7 +79,7 @@ You need to have `.aux` file already, not just the `.tex`. If you don't have it,
 
 ### filltex (script)
 
-***`filltex`*** does the whole thing: compile LaTex, fill the bibliography and gives you a `.pdf`. Usage:
+***`filltex`*** does the whole thing: compile LaTex, fill the bibliography and gives you the final `.pdf`. Usage:
 
     filltex <tex file>
 
@@ -100,7 +101,7 @@ A short `test.tex` file is provided, where you can test this new way of writing 
 
 ## Known limitations
 
-  - Treating eprints with ADS is tricky. When an eprint gets published they change the database key, but make the old key point to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing a prepreint which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the eprint key (e.g. `2016arXiv160203837T`) and the published-version key (e.g. `2016PhRvL.116f1102A`) are available. When used, they will both point to the same published version! If you write a document with citations to both, this will cause the same record to appear twice in the reference list (see the test file). To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the cite key when a paper gets published.
+  - Treating arXiv e-prints with ADS is tricky. When an e-print gets published they change the database key, but make the old key point to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing an e-print which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the e-print key (e.g. `2016arXiv160203837T`) and the published-version key (e.g. `2016PhRvL.116f1102A`) are available. When used, they will both point to the same published version! If you write a document with citations to both, this will cause the same record to appear twice in your reference list (see the test file). To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the citation key when a paper gets published.
 
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies in here, because you're not going to need them with this script: one paper, one bibliography, that's all.
 
