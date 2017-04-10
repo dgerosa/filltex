@@ -88,6 +88,8 @@ You need to have `.aux` file already, not just the `.tex`. If you don't have it,
 or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 
     pytest fillbib
+    
+`fillbib` supports both python 2 (2.6 or higher) and python 3.
 
 ### filltex (script)
 
