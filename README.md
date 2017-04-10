@@ -58,10 +58,10 @@ Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and w
 
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
 
-If you want to give it a try, you can run it on the `test.tex` file provided:
+If you want to give it a try, you can run it on the `example.tex` file provided:
 
-    cd test
-    filltex test
+    cd example
+    filltex example
 
 and you should get a filled `.bib` file and a finished `.pdf`.
 
@@ -77,6 +77,17 @@ Usage:
 The second argument `<bib file>` can be omitted, and the code will scan the `.aux` file to guess the name of your bibliography file.
 Arguments can be typed with or without extension, and the script is smart enough to figure it out.
 You need to have `.aux` file already, not just the `.tex`. If you don't have it, run `pdflatex` once.
+
+`fillbib` contains two short unit tests, to make sure the web-scarping part is done correctly. You can run them from the `filltex` directiory using
+
+    python
+    > import fillbib
+    > fillbib.test_ads()
+    > fillbib.test_inspire()
+
+or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
+
+    pytest fillbib
 
 ### filltex (script)
 
@@ -95,14 +106,14 @@ At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which
 I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. The [TexShop](http://pages.uoregon.edu/koch/texshop) engine will work only if the path is updated in your `.bashrc`, see above.
 
 
-### Test
+### Example
 
-A short `test.tex` file is provided, where you can test this new way of writing papers!
+A short `example.tex` file is provided, where you can try this new way of writing papers!
 
 
 ## Known limitations
 
-  - Treating arXiv e-prints with ADS is tricky. When an e-print gets published they change the database key, but make the old key point to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing an e-print which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the e-print key (e.g. `2016arXiv160203837T`) and the published-version key (e.g. `2016PhRvL.116f1102A`) are available. When used, they will both point to the same published version! If you write a document with citations to both, this will cause the same record to appear twice in your reference list (see the test file). To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the citation key when a paper gets published.
+  - Treating arXiv e-prints with ADS is tricky. When an e-print gets published they change the database key, but make the old key point to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing an e-print which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the e-print key (e.g. `2016arXiv160203837T`) and the published-version key (e.g. `2016PhRvL.116f1102A`) are available. When used, they will both point to the same published version! If you write a document with citations to both, this will cause the same record to appear twice in your reference list (see the example file). To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the citation key when a paper gets published.
 
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies in here, because you're not going to need them with this script: one paper, one bibliography, that's all.
 
