@@ -31,11 +31,14 @@ def ads_citation(c): # download single ADS citation
         bib=bib.decode()
     bib = "@"+bib.split("@")[1]
 
-
     if 'arXiv' in c: # Take care of preprint on ADS
         bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
+        return bib
 
-    return bib
+    elif bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
+        return bib
+    else:
+        return None
 
 def inspire_citation(c): # download single INSPIRE citation
 
@@ -46,7 +49,10 @@ def inspire_citation(c): # download single INSPIRE citation
     f.close()
     bib = "@"+bib.split("@")[1].split('</pre>')[-2]
 
-    return bib
+    if bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
+        return bib
+    else:
+        return None
 
 def test_ads(): # test single ADS web scraping (both published articles and preprints)
     test_key = ["2016PhRvL.116f1102A","2016arXiv160203837T"]
