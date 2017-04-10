@@ -10,7 +10,7 @@ Usage:
 python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, it will try to guess it from the aux file"
 
 '''
-import sys, os, re, commands
+import sys, os, re, commands, urllib
 
 if len(sys.argv)==2:     # Get the name of the bibfile from the aux file
     basename = sys.argv[1].split('.tex')[0]
@@ -57,24 +57,35 @@ bibtex = open(bibfile,'a')      # open for appending
 for c in cites:
     if c not in haves:
 
-        if not c[0].isalpha(): # The first charachet is a number: could be on ADS
+        if not c[0].isalpha(): # The first charachter is a number: could be on ADS
 
             try:
-                bib = "@"+commands.getstatusoutput('curl "http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode='+c+'&data_type=BIBTEX&db_key=AST&nocookieset=1"')[1].split("@")[1]
+                # Old version using curl.
+                #bib = "@"+commands.getstatusoutput('curl "http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode='+c+'&data_type=BIBTEX&db_key=AST&nocookieset=1"')[1].split("@")[1]
+                f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
+                bib = f.read()
+                f.close()
+                bib = "@"+bib.split("@")[1]
 
                 if 'arXiv' in c: # Take care of preprint on ADS
                     bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
-
 
                 bibtex.write(bib)
                 print "ADS Found:", c
             except:
                 print "ADS Not found:", c
 
-        else: # The first charachet is not a number: could be on INSPIRE
+        else: # The first charachter is not a number: could be on INSPIRE
 
             try:
-                bib = "@"+commands.getstatusoutput('curl "https://inspirehep.net/search?p='+c+'&of=hx&em=B&sf=year&so=d&rg=1"')[1].split("@")[1].split('</pre>')[-2]
+                # Old version using curl.
+                #bib = "@"+commands.getstatusoutput('curl "https://inspirehep.net/search?p='+c+'&of=hx&em=B&sf=year&so=d&rg=1"')[1].split("@")[1].split('</pre>')[-2]
+
+                f= urllib.urlopen("https://inspirehep.net/search?p="+c+"&of=hx&em=B&sf=year&so=d&rg=1")
+                bib = f.read()
+                f.close()
+                bib = "@"+bib.split("@")[1].split('</pre>')[-2]
+
                 bibtex.write(bib)
                 print "INSPIRE Found:", c
             except:
