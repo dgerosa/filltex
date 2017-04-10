@@ -19,9 +19,6 @@ else:
     import urllib
 
 
-def ads_url(c): # url for ADS citations
-    return
-
 def ads_citation(c): # download single ADS citation
 
     f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
