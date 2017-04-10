@@ -88,6 +88,8 @@ You need to have `.aux` file already, not just the `.tex`. If you don't have it,
 or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 
     pytest fillbib
+    
+`fillbib` supports both python 2 (2.6 or higher) and python 3.
 
 ### filltex (script)
 
@@ -124,4 +126,4 @@ The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). I
 
     dgerosa@caltech.edu
 
-The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. [TexCount](http://app.uio.no/ifi/texcount) may be already included in your Tex distribution; in case it's not, you can find it in this repository for your convenience. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
+The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). We thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. [TexCount](http://app.uio.no/ifi/texcount) may be already included in your Tex distribution; in case it's not, you can find it in this repository for your convenience. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
