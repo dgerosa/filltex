@@ -1,1 +1,1 @@
-find . -type f  ! -name "*.tex*" -delete
+find . -type f  ! -name "example.tex" ! -name "clean.sh" -delete
