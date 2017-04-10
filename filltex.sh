@@ -13,7 +13,7 @@ if [ ! -f ${START}/${1%.*}.tex ]; then
   exit 1
 fi
 FILE=${1%.*}
-echo "dtex is compiling ${FILE}.tex"
+echo "filltex is compiling ${FILE}.tex"
 
 # Get the journal abbreviations from ADS
 if grep -q 'aas_macros' ${FILE}.tex; then # check if you need them
