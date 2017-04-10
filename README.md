@@ -109,7 +109,7 @@ A short `test.tex` file is provided, where you can test this new way of writing 
 
 
 ## Credits
-The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). If you find bugs and/or want to contribute to this project (any help is welcome!) just open an issue here on GitHub. For anything else, feel free to drop me an email:
+The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). If you find bugs, want to contribute to this project (any help is welcome!) and need help, just open an issue here on GitHub. For anything else, feel free to drop me an email:
 
     dgerosa@caltech.edu
 
