@@ -10,7 +10,14 @@ Usage:
 python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, it will try to guess it from the aux file"
 
 '''
-import sys, os, re, commands, urllib
+from __future__ import absolute_import, print_function
+import sys, os, re
+
+if sys.version_info.major>=3:
+    import urllib.request as urllib
+else:
+    import urllib
+
 
 def ads_url(c): # url for ADS citations
     return
@@ -20,7 +27,10 @@ def ads_citation(c): # download single ADS citation
     f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
     bib = f.read()
     f.close()
+    if sys.version_info.major>=3:
+        bib=bib.decode()
     bib = "@"+bib.split("@")[1]
+
 
     if 'arXiv' in c: # Take care of preprint on ADS
         bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
@@ -31,6 +41,8 @@ def inspire_citation(c): # download single INSPIRE citation
 
     f= urllib.urlopen("https://inspirehep.net/search?p="+c+"&of=hx&em=B&sf=year&so=d&rg=1")
     bib = f.read()
+    if sys.version_info.major>=3:
+        bib=bib.decode()
     f.close()
     bib = "@"+bib.split("@")[1].split('</pre>')[-2]
 
@@ -55,7 +67,7 @@ if __name__ == "__main__":
         for line in open(auxfile,'r'):
             m = re.search(r'\\bibdata\{(.*)\}',line)   # match \citation{...}, collect the ... note that we escape \, {, and }
             if m:
-                bibfile = filter(lambda x:x!=basename+'Notes', m.group(1).split(','))[0]  # Remove that annyoing feature of revtex which creates a *Notes.bib bibfile. Note this is not solid if you want to handle multiple bib files.
+                bibfile = list(filter(lambda x:x!=basename+'Notes', m.group(1).split(',')))[0]  # Remove that annyoing feature of revtex which creates a *Notes.bib bibfile. Note this is not solid if you want to handle multiple bib files.
         bibfile = bibfile + '.bib'
 
     elif len(sys.argv)==3:    # Bibfile specified from argv
@@ -63,7 +75,7 @@ if __name__ == "__main__":
         auxfile = basename + '.aux'
         bibfile = sys.argv[2].split('.bib')[0] + '.bib'
     else:
-        print "Usage: python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, assume the two are the same."
+        print("Usage: python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, assume the two are the same.")
         sys.exit()
 
 
@@ -76,7 +88,7 @@ if __name__ == "__main__":
 
     cites= cites.difference(['REVTEX41Control','apsrev41Control']) # Remove annoying entries of revtex
 
-    print "Seek:", cites
+    print("Seek:", cites)
 
     # Check what you already have in the bib file
     haves = []
@@ -85,7 +97,7 @@ if __name__ == "__main__":
             m = re.search(r'@.*?\{(.*),',line)  # .*\{ means "any # of any char followed by {"; .*?\{ means "the shortest string matching any # of any char followed by {"
             if m:
                 haves.append(m.group(1))
-    print "Have:", haves
+    print("Have:", haves)
 
 
     # Query ADS and INSPIRE
@@ -99,17 +111,17 @@ if __name__ == "__main__":
                 try:
                     bib = ads_citation(c)
                     bibtex.write(bib)
-                    print "ADS Found:", c
+                    print("ADS Found:", c)
                 except:
-                    print "ADS Not found:", c
+                    print("ADS Not found:", c)
 
             else: # The first charachter is not a number: could be on INSPIRE
 
                 try:
                     bib = inspire_citation(c)
                     bibtex.write(bib)
-                    print "INSPIRE Found:", c
+                    print("INSPIRE Found:", c)
                 except:
-                    print "INSPIRE Not found:", c
+                    print("INSPIRE Not found:", c)
 
     bibtex.close()

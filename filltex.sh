@@ -27,7 +27,11 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Fill the bib fil with the ADS and INSPIRE references.
+# Use python 2
 python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
+# Use python 3
+#python3 ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
+
 
 # Fill the bbl file from the bib file
 for file in *.aux ; do
