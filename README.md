@@ -99,7 +99,7 @@ or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 
 Argument can be with or without extension, and the script is smart enough to figure it out.
 
-Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` would download the file for you if you need it.
+Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` will download the file for you if you need it.
 
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document. 
 
