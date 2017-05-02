@@ -4,7 +4,7 @@
 
 If you use `filltex` for your paper, consider dropping a citation in the acknowledgemens.
 
-[![DOI](https://zenodo.org/badge/73505895.svg)](https://zenodo.org/badge/latestdoi/73505895)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.570875.svg)](https://doi.org/10.5281/zenodo.570875)
 
 ## Intro
 
