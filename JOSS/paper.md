@@ -22,6 +22,6 @@
 
  # Summary
 
-`filltex` is a simple tool to fill LaTex reference lists with records from the ADS and INSPIRE  databases. ADS and INSPIRE are the most common databases used among the theoretical physics and astronomy scientific communities, respectively. `filltex` automatically looks for all citation labels present in a tex document and, by means of web-scraping, downloads  all the required citation records from either of the two databases. `filltex` significantly speeds up the LaTex scientific writing workflow, as all required actions (compile the tex file, fill the bibliography, compile the bibliography, compile the tex file again) are automated in a single command. We also provide an integration of `filltex` for the macOS LaTex editor TexShop.
+`filltex` is a simple tool to fill LaTex reference lists with records from the ADS and INSPIRE databases. ADS [@ADS] and INSPIRE [@INSPIRE] are the most common databases used among the theoretical physics and astronomy scientific communities, respectively. `filltex` automatically looks for all citation labels present in a tex document and, by means of web-scraping, downloads  all the required citation records from either of the two databases. `filltex` significantly speeds up the LaTex scientific writing workflow, as all required actions (compile the tex file, fill the bibliography, compile the bibliography, compile the tex file again) are automated in a single command. We also provide an integration of `filltex` for the macOS LaTex editor TexShop [@TexShop].
 
  # References
