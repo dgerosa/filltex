@@ -4,17 +4,17 @@
 
 If you use `filltex` for your research, consider dropping a citation to this paper in the acknowledgemens.
 
-    @article{Gerosa2017,
-      doi = {10.21105/joss.00222},
-      url = {https://doi.org/10.21105%2Fjoss.00222},
-      year  = {2017},
-      month = {may},
-      publisher = {The Open Journal},
-      volume = {2},
-      number = {13},
-      author = {Davide Gerosa and Michele Vallisneri},
-      title = {filltex: Automatic queries to {ADS} and {INSPIRE} databases to fill {LaTex} bibliography},
-      journal = {The Journal of Open Source Software}
+    @article{filltex,
+     Author = {{Gerosa}, D. and {Vallisneri}, M.},
+     Doi = {10.21105/joss.00222},
+     Journal = {The Journal of Open Source Software},
+     Month = {may},
+     Number = {13},
+     Publisher = {The Open Journal},
+     Title = {filltex: Automatic queries to {ADS} and {INSPIRE} databases to fill {LaTex} bibliography},
+     Url = {https://doi.org/10.21105%2Fjoss.00222},
+     Volume = {2},
+     Year = {2017},
     }
 
 Unfortunatelly, you can't use `filltex` to cite `filltex`, because [The Journal of Open Source Software](http://joss.theoj.org/) is not indexed by either ADS or INSPIRE. Ironic, uh?
