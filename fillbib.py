@@ -107,7 +107,7 @@ if __name__ == "__main__":
     bibtex = open(bibfile,'a')      # open for appending
 
     for c in cites:
-        if c not in haves:
+        if c and c not in haves: # c is something and you don't have it already
 
             if not c[0].isalpha(): # The first charachter is a number: could be on ADS
 
