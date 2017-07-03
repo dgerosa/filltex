@@ -44,7 +44,7 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ## Installation
 
-`filltex` can be installed from the python package pndex [Pypi](https://pypi.python.org/pypi):
+`filltex` can be installed from the python package index [Pypi](https://pypi.python.org/pypi):
     
     pip install filltex
 
