@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name = 'filltex',
-      version = '1.1',
+      version = '1.2',
       description = 'A LaTeX reference tool',
       long_description = 'A LaTeX reference tool',
 
