@@ -63,7 +63,7 @@ If you want to give it a try, you can run it on the `example.tex` file provided 
 and you should get a filled `.bib` file and a finished `.pdf`.
 
 
-## Installation (manually)
+## Installation (manually...)
 
 If you don't like pip, you can install the code manually. First, clone the repository
 
