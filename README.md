@@ -64,28 +64,16 @@ If you want to give it a try, you can run it on the `example.tex` file provided 
 and you should get a filled `.bib` file and a finished `.pdf`.
 
 
-## Installation (manually...)
+### Installation from repository
 
-If you don't like pip, you can install the code manually. First, clone the repository:
+If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually. First, clone the repository:
 
-    git clone https://github.com/dgerosa/filltex.git
+    git clone https://github.com/dgerosa/filltex.git # Clone repo
     cd filltex
-
-Now make the content of the `bin` directory executable
-
-    chmod +x bin/*
-
-and add it to your path
-
-    PATH=$PATH:$(pwd)/bin
-
-You can add this command to your `.bashrc`:
-
-    echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc
-
-The [TexShop](http://pages.uoregon.edu/koch/texshop) engine can be installed with:
-    
-    cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
+    chmod +x bin/* # Make bin content executable
+    PATH=$PATH:$(pwd)/bin # Add bin directory to path
+    echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc # To add the new path to your .bashrc    
+    cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine # To install the Texshop engine
 
 ## Usage
 
