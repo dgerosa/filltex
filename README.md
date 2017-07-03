@@ -57,7 +57,8 @@ If you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to us
 
 If you want to give it a try, you can run it on the `example.tex` file provided in this repository:
 
-    cd example
+    git clone https://github.com/dgerosa/filltex.git
+    cd filltex/example
     filltex example
 
 and you should get a filled `.bib` file and a finished `.pdf`.
