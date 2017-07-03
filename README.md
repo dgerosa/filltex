@@ -83,7 +83,7 @@ You can add this command to your `.bashrc`:
 
     echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc
 
-The [TexShop](http://pages.uoregon.edu/koch/texshop) can be installed with:
+The [TexShop](http://pages.uoregon.edu/koch/texshop) engine can be installed with:
     
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
 
