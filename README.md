@@ -44,7 +44,29 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ## Installation
 
-Clone the repository
+`filltex` can be installed from the python package pndex [Pypi](https://pypi.python.org/pypi):
+    
+    pip install filltex
+
+If you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to use this feature, run
+
+    filltex install-texshop
+
+The script requires the program `realpath`. This should be there by default on most linux distributions. On mac, you can get if from [Homebrew](http://brew.sh/)
+
+    brew install coreutils
+
+If you want to give it a try, you can run it on the `example.tex` file provided in this repository:
+
+    cd example
+    filltex example
+
+and you should get a filled `.bib` file and a finished `.pdf`.
+
+
+## Installation (manually)
+
+If you don't like pip, you can install the code manually. First, clone the repository
 
     git clone https://github.com/dgerosa/filltex.git
 
@@ -52,11 +74,7 @@ and `cd` into your repo directory
 
     cd filltex
 
-My script requires the program `realpath`. This should be there by default on most linux distributions. On mac, you can get if from [Homebrew](http://brew.sh/)
-
-    brew install coreutils
-
-Now, make the content of the `bin` directory executable
+Now make the content of the `bin` directory executable
 
     chmod +x bin/*
 
@@ -68,16 +86,8 @@ You can add this command to your `.bashrc`:
 
     echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc
 
-Finally, if you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to use this feature, run (might need sudo)
-
+The [TexShop](http://pages.uoregon.edu/koch/texshop) can be installed with:
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine
-
-If you want to give it a try, you can run it on the `example.tex` file provided:
-
-    cd example
-    filltex example
-
-and you should get a filled `.bib` file and a finished `.pdf`.
 
 ## Usage
 
