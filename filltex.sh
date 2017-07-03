@@ -22,16 +22,16 @@ if grep -q 'aas_macros' ${FILE}.tex; then # check if you need them
   fi
 fi
 
-# The pdflatex command return 0 if everyting is ok, or 1 if he get an error. If there's an error, I want the script to exit.
+# The pdflatex command returns 0 if everyting is ok, or 1 if he gets an error. If there's an error, I want the script to exit.
 pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Fill the bib fil with the ADS and INSPIRE references.
 # Use python 2
-python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
+#python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
 # Use python 3
 #python3 ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
-
+fillbib ${FILE}
 
 # Fill the bbl file from the bib file
 for file in *.aux ; do
@@ -45,7 +45,8 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Count the words
-perl ${SCRIPT_LOCATION}/texcount.pl "${FILE}".tex
+#perl ${SCRIPT_LOCATION}/texcount.pl "${FILE}".tex
+texcount "${FILE}".tex
 
 # open the pdf file if you like
 #open "${FILE}".pdf
