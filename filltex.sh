@@ -2,8 +2,23 @@
 # Full tex compiler: run pdflatex, bibtex, query ADS and INSPIRE for citations and count words
 # Davide Gerosa
 
-SCRIPT=`realpath $0`
-SCRIPT_LOCATION=`dirname $SCRIPT`
+# Install texshop engine
+if [ $1 == 'install-texshop' ]; then
+  TEXSHOP="${HOME}/Library/TeXshop/Engines/filltex.engine"
+  echo "Installing texshop engine in $TEXSHOP"
+  echo  ''#!/bin/bash '' > $TEXSHOP
+  echo  ''export PATH=$(dirname $(which filltex)):\${PATH}'' >> $TEXSHOP
+  echo  ''echo \$1 '' >> $TEXSHOP
+  echo  ''FILENAME=\${1%%.*} '' >> $TEXSHOP
+  echo  ''echo \$FILENAME '' >> $TEXSHOP
+  echo  ''filltex \$FILENAME '' >> $TEXSHOP
+exit
+fi
+
+
+# Actual script
+#SCRIPT=`realpath $0`
+#SCRIPT_LOCATION=`dirname $SCRIPT`
 
 
 START=$PWD #Where you started
