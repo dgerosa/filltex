@@ -52,9 +52,8 @@ If you're a [TexShop](http://pages.uoregon.edu/koch/texshop) user and want to us
 
     filltex install-texshop
 
-The script requires the program `realpath`. This should be there by default on most linux distributions. On mac, you can get if from [Homebrew](http://brew.sh/)
-
-    brew install coreutils
+<!-- The script requires the program `realpath`. This should be there by default on most linux distributions. On mac, you can get if from [Homebrew](http://brew.sh/)-->
+<!--   brew install coreutils -->
 
 If you want to give it a try, you can run it on the `example.tex` file provided in this repository:
 
