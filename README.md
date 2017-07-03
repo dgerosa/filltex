@@ -66,12 +66,9 @@ and you should get a filled `.bib` file and a finished `.pdf`.
 
 ## Installation (manually...)
 
-If you don't like pip, you can install the code manually. First, clone the repository
+If you don't like pip, you can install the code manually. First, clone the repository:
 
     git clone https://github.com/dgerosa/filltex.git
-
-and `cd` into your repo directory
-
     cd filltex
 
 Now make the content of the `bin` directory executable
