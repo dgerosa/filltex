@@ -75,6 +75,8 @@ If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.
     echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc # To add the new path to your .bashrc    
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine # To install the Texshop engine
 
+`filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, you can find installation instruction [here](http://app.uio.no/ifi/texcount/faq.html#setup).
+
 ## Usage
 
 ### fillbib (script)
@@ -137,7 +139,7 @@ The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). I
 
     dgerosa@caltech.edu
 
-The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). We thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. [TexCount](http://app.uio.no/ifi/texcount) may be already included in your Tex distribution; in case it's not, you can find it in this repository for your convenience. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
+The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). We thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. The [TexCount](http://app.uio.no/ifi/texcount) code is developed by Einar Andreas Rodland. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
 
 ## Changes
 
