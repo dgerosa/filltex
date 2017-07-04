@@ -75,7 +75,7 @@ If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.
     echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc # To add the new path to your .bashrc    
     cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine # To install the Texshop engine
 
-`filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, you can find installation instruction [here](http://app.uio.no/ifi/texcount/faq.html#setup).
+`filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, [here](http://app.uio.no/ifi/texcount/faq.html#setup) you can find installation instruction.
 
 ## Usage
 
