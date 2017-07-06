@@ -12,6 +12,7 @@ if [ $1 == 'install-texshop' ]; then
   echo  ''FILENAME=\${1%%.*} '' >> $TEXSHOP
   echo  ''echo \$FILENAME '' >> $TEXSHOP
   echo  ''filltex \$FILENAME '' >> $TEXSHOP
+  chmod +x $TEXSHOP
 exit
 fi
 
