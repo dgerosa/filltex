@@ -20,27 +20,6 @@ If you use `filltex` for your research, consider dropping a citation to this pap
 Unfortunatelly, you can't use `filltex` to cite `filltex`, because [The Journal of Open Source Software](http://joss.theoj.org/) is not indexed by either ADS or INSPIRE. Ironic, uh?
 
 
-## Intro
-
-What happens when you compile a LaTex file? How's bibliography handled?
-
-  1. Run `pdflatex` and all requested citation keys are dumped into a `.aux` file.
-  2. You **should** have the required entries in you `.bib` file.
-  3. Run `bibtex`, which looks for citations inside the `.bib` file and writes the results into a `.bbl`.
-  4. Run `pdflatex` again, which processes the `.bbl` into the compiled paper, and dumps the citation records into `.aux`.
-  5. Finally run `pdflatex` again, which puts the correct citation records into the paper.
-
-The commands you need to run are: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. These, of course can be put into a script or a makefile and done in one goal.
-`filltex` is meant to automatically solve the second point as well: look for citations on [ADS](http://adsabs.harvard.edu), [INSPIRE](http://inspirehep.net) or both.
-
-So, here is the deal:
-
-  - The `fillbib` python script queries both databases and create/update a `.bib` file without getting each record manually.
-  - The `filltex` bash script put everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
-  - I also provide [TexShop](http://pages.uoregon.edu/koch/texshop) engines for mac users
-
-Of course, all of this works if your citations are specified in the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys `\cite{amazing_paper}`there's no way to get them from a database.
-
 
 ## Installation
 
@@ -63,19 +42,26 @@ If you want to give it a try, you can run it on the `example.tex` file provided 
 
 and you should get a filled `.bib` file and a finished `.pdf`.
 
+## What's about?
 
-### Installation from repository
+What happens when you compile a LaTex file? How's bibliography handled?
 
-If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually:
+  1. Run `pdflatex` and all requested citation keys are dumped into a `.aux` file.
+  2. You **should** have the required entries in you `.bib` file.
+  3. Run `bibtex`, which looks for citations inside the `.bib` file and writes the results into a `.bbl`.
+  4. Run `pdflatex` again, which processes the `.bbl` into the compiled paper, and dumps the citation records into `.aux`.
+  5. Finally run `pdflatex` again, which puts the correct citation records into the paper.
 
-    git clone https://github.com/dgerosa/filltex.git # Clone repo
-    cd filltex
-    chmod +x bin/* # Make bin content executable
-    PATH=$PATH:$(pwd)/bin # Add bin directory to path
-    echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc # To add the new path to your .bashrc    
-    cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine # To install the Texshop engine
+The commands you need to run are: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. These, of course can be put into a script or a makefile and done in one goal.
+`filltex` is meant to automatically solve the second point as well: look for citations on [ADS](http://adsabs.harvard.edu), [INSPIRE](http://inspirehep.net) or both.
 
-`filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, [here](http://app.uio.no/ifi/texcount/faq.html#setup) you can find installation instruction.
+So, here is the deal:
+
+  - The `fillbib` python script queries both databases and create/update a `.bib` file without getting each record manually.
+  - The `filltex` bash script put everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
+  - I also provide [TexShop](http://pages.uoregon.edu/koch/texshop) engines for mac users
+
+Of course, all of this works if your citations are specified in the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys `\cite{amazing_paper}`there's no way to get them from a database.
 
 ## Usage
 
@@ -120,17 +106,29 @@ At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which
 I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. 
 <!-- The [TexShop](http://pages.uoregon.edu/koch/texshop) engine will work only if the path is updated in your `.bashrc`, see above. -->
 
-
 ### Example
 
 A short `example.tex` file is provided, where you can try this new way of writing papers!
-
 
 ## Known limitations
 
   - Treating arXiv e-prints with ADS is tricky. When an e-print gets published they change the database key, but make the old key point to the new version! For instance, the key switches from `2016arXiv160203837T` to `2016PhRvL.116f1102A`.  If you're citing an e-print which is not yet published, everything is fine: only the arXiv key (e.g. `2016arXiv160203837T`) is available and your reference list will show the arXiv version. If you're citing a paper that is published, both the e-print key (e.g. `2016arXiv160203837T`) and the published-version key (e.g. `2016PhRvL.116f1102A`) are available. When used, they will both point to the same published version! If you write a document with citations to both, this will cause the same record to appear twice in your reference list (see the example file). To avoid the issue, always use the published-paper key if a published version is out. INSPIRE doesn't have this problem, because they don't change the citation key when a paper gets published.
 
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies in here, because you're not going to need them with this script: one paper, one bibliography, that's all.
+
+
+### Installation from repository
+
+If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually:
+
+    git clone https://github.com/dgerosa/filltex.git # Clone repo
+    cd filltex
+    chmod +x bin/* # Make bin content executable
+    PATH=$PATH:$(pwd)/bin # Add bin directory to path
+    echo "PATH=$PATH:$(pwd)/bin" >> ${HOME}/.bashrc # To add the new path to your .bashrc    
+    cp filltex.engine ~/Library/TeXshop/Engines/filltex.engine # To install the Texshop engine
+
+`filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, [here](http://app.uio.no/ifi/texcount/faq.html#setup) you can find installation instruction.
 
 
 
