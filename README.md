@@ -117,7 +117,7 @@ A short `example.tex` file is provided, where you can try this new way of writin
   - Multiple bibliographies are not allowed, only one `.bib` file per paper. I don't plan to implement multiple bibliographies in here, because you're not going to need them with this script: one paper, one bibliography, that's all.
 
 
-### Installation from repository
+### Manual nstallation from repository
 
 If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually:
 
