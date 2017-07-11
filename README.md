@@ -145,9 +145,12 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 
 ## Changes
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.439388.svg)](https://doi.org/10.5281/zenodo.439388) v1.0: Initial release, main functionalities 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.439388.svg)](https://doi.org/10.5281/zenodo.439388) v1.0: Initial release, main functionalities.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.570875.svg)](https://doi.org/10.5281/zenodo.570875) v1.1: Version accepted in JOSS 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.570875.svg)](https://doi.org/10.5281/zenodo.570875) v1.1: Version accepted in JOSS.
+
+[![DOI](https://zenodo.org/badge/73505895.svg)](https://zenodo.org/badge/latestdoi/73505895) v1.2: Uploaded on pip; arXiv sumbission.
+
 
 
 
