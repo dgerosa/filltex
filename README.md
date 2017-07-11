@@ -130,6 +130,10 @@ If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.
 
 `filltex` uses [TexCount](http://app.uio.no/ifi/texcount), which is included in most Tex distribution. In case it's not in yours, [here](http://app.uio.no/ifi/texcount/faq.html#setup) you can find installation instruction.
 
+## References to filltex
+
+  - `filltex` is included in the [suggested tools](https://inspirehep.net/info/hep/tools/index) from the INSPIRE team.
+  - `filltex` is included the [official v3.80 release](http://pages.uoregon.edu/koch/texshop/changes_3.html) of Texshop.
 
 
 ## Credits
