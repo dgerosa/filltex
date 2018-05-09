@@ -7,7 +7,7 @@ If you use `filltex` for your research, please drop a citation to [this paper](h
 - *filltex: Automatic queries to ADS and INSPIRE databases to fill LaTex bibliography*,
 Davide Gerosa, Michele Vallisneri, The Journal of Open Source Software 2 (2017) 13.
 
-Of course, you can use `filltex` to cite `filltex`! Just put `\cite{2017JOSS.2017..222G}` in your tex file!
+Of course, you can use `filltex` to cite `filltex`! Just put `\cite{2017JOSS....2..222G}` in your tex file!
 
 
 
