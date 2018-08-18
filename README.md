@@ -1,5 +1,3 @@
-# filltex
-
  `filltex` is a simple tool to fill LaTex reference lists with records from the [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net)  databases. [ADS](http://adsabs.harvard.edu) and [INSPIRE](http://inspirehep.net) are the most common databases used among the astronomy and theoretical physics scientific communities, respectively. `filltex` automatically looks for all citation labels present in a tex document and, by means of web-scraping, downloads  all the required citation records from either of the two databases. `filltex` significantly speeds up the LaTex scientific writing workflow, as all required actions (compile the tex file, fill the bibliography, compile the bibliography, compile the tex file again) are automated in a single command. We also provide an integration of `filltex` for the macos LaTex editor [TexShop](http://pages.uoregon.edu/koch/texshop).
 
 If you use `filltex` for your research, please drop a citation to [this paper](http://joss.theoj.org/papers/10.21105/joss.00222):
