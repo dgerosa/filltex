@@ -3,7 +3,7 @@
 # Davide Gerosa
 
 # Install texshop engine
-if [ $1 == 'install-texshop' ]; then
+if [[ $1 = 'install-texshop' ]]; then
   TEXSHOP="${HOME}/Library/TeXshop/Engines/filltex.engine"
   echo "Installing texshop engine in $TEXSHOP"
   echo  ''#!/bin/bash '' > $TEXSHOP

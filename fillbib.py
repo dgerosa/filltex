@@ -20,14 +20,16 @@ else:
 
 
 def ads_citation(c): # download single ADS citation
+    #f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
+    #print("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
+    f= urllib.urlopen("https://ui.adsabs.harvard.edu/abs/"+c+"/exportcitation")
 
-    f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
     bib = f.read()
     f.close()
     if sys.version_info.major>=3:
         bib=bib.decode()
-    bib = "@"+bib.split("@")[1]
-
+    bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
+    bib=bib.replace("&#34;","")
     if 'arXiv' in c: # Take care of preprint on ADS
         bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
         return bib
@@ -110,7 +112,7 @@ if __name__ == "__main__":
         if c and c not in haves: # c is something and you don't have it already
 
             if not c[0].isalpha(): # The first charachter is a number: could be on ADS
-
+            
                 try:
                     bib = ads_citation(c)
                     bibtex.write(bib)
