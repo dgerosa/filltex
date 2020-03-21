@@ -11,7 +11,7 @@ python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, it will try to
 
 '''
 from __future__ import absolute_import, print_function
-import sys, os, re
+import sys, os, re, html
 
 if sys.version_info.major>=3:
     import urllib.request as urllib
@@ -29,7 +29,8 @@ def ads_citation(c): # download single ADS citation
     if sys.version_info.major>=3:
         bib=bib.decode()
     bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
-    bib=bib.replace("&#34;","")
+    bib=html.unescape(bib)
+
     if 'arXiv' in c: # Take care of preprint on ADS
         bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
         return bib
@@ -112,7 +113,7 @@ if __name__ == "__main__":
         if c and c not in haves: # c is something and you don't have it already
 
             if not c[0].isalpha(): # The first charachter is a number: could be on ADS
-            
+
                 try:
                     bib = ads_citation(c)
                     bibtex.write(bib)
