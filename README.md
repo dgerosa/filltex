@@ -11,6 +11,7 @@ Davide Gerosa, Michele Vallisneri, The Journal of Open Source Software 2 (2017) 
 
 Of course, you can use `filltex` to cite `filltex`! Just put `\cite{2017JOSS....2..222G}` in your tex file!
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.596848.svg)](https://doi.org/10.5281/zenodo.596848)
 
 
 ## Installation
@@ -137,12 +138,12 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 
 ## Changes
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.439388.svg)](https://doi.org/10.5281/zenodo.439388) v1.0: Initial release, main functionalities.
+ **v1.0**: Initial release, main functionalities.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.570875.svg)](https://doi.org/10.5281/zenodo.570875) v1.1: Version accepted in JOSS.
+**v1.1**: Version accepted in JOSS.
 
-[![DOI](https://zenodo.org/badge/73505895.svg)](https://zenodo.org/badge/latestdoi/73505895) v1.2: Uploaded on pip.
+**v1.2**: Uploaded on pip.
 
-
+**v1.3**: Compatible with new ADS "Bumblebee"
 
 
