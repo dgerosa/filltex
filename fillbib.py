@@ -42,7 +42,7 @@ def ads_citation(c): # download single ADS citation
 
 def inspire_citation(c): # download single INSPIRE citation
 
-    f= urllib.urlopen("https://inspirehep.net/search?p="+c+"&of=hx&em=B&sf=year&so=d&rg=1")
+    f= urllib.urlopen("https://old.inspirehep.net/search?p="+c+"&of=hx&em=B&sf=year&so=d&rg=1")
     bib = f.read()
     if sys.version_info.major>=3:
         bib=bib.decode()
