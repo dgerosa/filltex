@@ -61,7 +61,7 @@ def test_ads(): # test single ADS web scraping (both published articles and prep
 
 def test_inspire(): # test single INSPIRE web scraping
     test_key = "Abbott:2016blz"
-    known_output= '@article{Abbott:2016blz,\n      author         = "Abbott, B. P. and others",\n      title          = "{Observation of Gravitational Waves from a Binary Black\n                        Hole Merger}",\n      collaboration  = "Virgo, LIGO Scientific",\n      journal        = "Phys. Rev. Lett.",\n      volume         = "116",\n      year           = "2016",\n      number         = "6",\n      pages          = "061102",\n      doi            = "10.1103/PhysRevLett.116.061102",\n      eprint         = "1602.03837",\n      archivePrefix  = "arXiv",\n      primaryClass   = "gr-qc",\n      reportNumber   = "LIGO-P150914",\n      SLACcitation   = "%%CITATION = ARXIV:1602.03837;%%"\n}\n'
+    known_output= '@article{Abbott:2016blz,\n      author         = "Abbott, B. P. and others",\n      title          = "{Observation of Gravitational Waves from a Binary Black\n                        Hole Merger}",\n      collaboration  = "LIGO Scientific, Virgo",\n      journal        = "Phys. Rev. Lett.",\n      volume         = "116",\n      year           = "2016",\n      number         = "6",\n      pages          = "061102",\n      doi            = "10.1103/PhysRevLett.116.061102",\n      eprint         = "1602.03837",\n      archivePrefix  = "arXiv",\n      primaryClass   = "gr-qc",\n      reportNumber   = "LIGO-P150914",\n      SLACcitation   = "%%CITATION = ARXIV:1602.03837;%%"\n}\n'
     assert inspire_citation(test_key) == known_output
 
 
