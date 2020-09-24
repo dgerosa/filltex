@@ -49,7 +49,9 @@ def inspire_citation(c): # download single INSPIRE citation
     f.close()
     bib = "@"+bib.split("@")[1].split('</pre>')[-2]
 
-    if bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
+    if ( bib.split("{")[1].split(',')[0] == c or
+         re.split('eprint\s*=\s*"',bib)[-1].split('",')[0] == c 
+       ): # Check you got what you where looking for
         return bib
     else:
         return None
