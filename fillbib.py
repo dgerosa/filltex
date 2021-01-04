@@ -12,6 +12,7 @@ python fillbib.py <tex_file> <bib_file>. If <bib_file> is absent, it will try to
 '''
 from __future__ import absolute_import, print_function
 import sys, os, re, html
+import json
 
 if sys.version_info.major>=3:
     import urllib.request as urllib
@@ -40,19 +41,13 @@ def ads_citation(c): # download single ADS citation
     else:
         return None
 
-def inspire_citation(c): # download single INSPIRE citation
-
-    f= urllib.urlopen("https://old.inspirehep.net/search?p="+c+"&of=hx&em=B&sf=year&so=d&rg=1")
-    bib = f.read()
-    if sys.version_info.major>=3:
-        bib=bib.decode()
-    f.close()
-    bib = "@"+bib.split("@")[1].split('</pre>')[-2]
-
-    if bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
-        return bib
-    else:
+def inspire_citation(c):
+    request = 'https://inspirehep.net/api/literature?q=' + c
+    data = json.loads(urllib.urlopen(request).read())
+    if data['hits']['total'] < 1:
         return None
+    else:
+        return urllib.urlopen(data['hits']['hits'][0]['links']['bibtex']).read().decode()
 
 def test_ads(): # test single ADS web scraping (both published articles and preprints)
     test_key = ["2016PhRvL.116f1102A","2016arXiv160203837T"]
@@ -61,7 +56,7 @@ def test_ads(): # test single ADS web scraping (both published articles and prep
 
 def test_inspire(): # test single INSPIRE web scraping
     test_key = "Abbott:2016blz"
-    known_output= '@article{Abbott:2016blz,\n      author         = "Abbott, B. P. and others",\n      title          = "{Observation of Gravitational Waves from a Binary Black\n                        Hole Merger}",\n      collaboration  = "LIGO Scientific, Virgo",\n      journal        = "Phys. Rev. Lett.",\n      volume         = "116",\n      year           = "2016",\n      number         = "6",\n      pages          = "061102",\n      doi            = "10.1103/PhysRevLett.116.061102",\n      eprint         = "1602.03837",\n      archivePrefix  = "arXiv",\n      primaryClass   = "gr-qc",\n      reportNumber   = "LIGO-P150914",\n      SLACcitation   = "%%CITATION = ARXIV:1602.03837;%%"\n}\n'
+    known_output = '@article{Abbott:2016blz,\n    author = "Abbott, B.P. and others",\n    collaboration = "LIGO Scientific, Virgo",\n    title = "{Observation of Gravitational Waves from a Binary Black Hole Merger}",\n    eprint = "1602.03837",\n    archivePrefix = "arXiv",\n    primaryClass = "gr-qc",\n    reportNumber = "LIGO-P150914",\n    doi = "10.1103/PhysRevLett.116.061102",\n    journal = "Phys. Rev. Lett.",\n    volume = "116",\n    number = "6",\n    pages = "061102",\n    year = "2016"\n}\n'
     assert inspire_citation(test_key) == known_output
 
 
