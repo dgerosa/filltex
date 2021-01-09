@@ -144,6 +144,6 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 
 **v1.2**: Uploaded on pip.
 
-**v1.3**: Compatible with new ADS "Bumblebee"
+**v1.3**: Compatible with new ADS "Bumblebee".
 
-
+**v1.3**: Compatible with new INSPIRE API.
