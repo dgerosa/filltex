@@ -44,7 +44,7 @@ def ads_citation(c): # download single ADS citation
 def inspire_citation(c): # download single INSPIRE citation. New API (Jan 2021)
     request = 'https://inspirehep.net/api/literature?q=' + c
     data = json.loads(urllib.urlopen(request).read())
-    if data['hits']['total'] < 1:
+    if data['hits']['total'] != 1:
         return None
     else:
         return urllib.urlopen(data['hits']['hits'][0]['links']['bibtex']).read().decode()
