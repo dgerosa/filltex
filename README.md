@@ -84,7 +84,7 @@ or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 
 ### filltex (script)
 
-***`filltex`*** does the whole thing: compile LaTex, fill the bibliography and gives you the final `.pdf`. Usage:
+***`filltex`*** does the whole thing: compiles LaTex, fills the bibliography and gives you the final `.pdf`. Usage:
 
     filltex <tex file>
 
