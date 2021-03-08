@@ -130,9 +130,7 @@ If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.
 
 
 ## Credits
-The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). If you find bugs, want to contribute to this project (any help is welcome!) or need help with it, just open an issue here on GitHub. For anything else, feel free to drop me an email:
-
-    dgerosa@caltech.edu
+The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). If you find bugs, want to contribute to this project (any help is welcome!) or need help with it, just open an issue here on GitHub.
 
 The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). We thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. [TexCount](http://app.uio.no/ifi/texcount) is developed by Einar Andreas Rodland. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
 
