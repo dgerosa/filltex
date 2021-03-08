@@ -50,8 +50,8 @@ The commands you need to run are: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`. 
 
 So, here is the deal:
 
-  - The `fillbib` python script queries both databases and create/update a `.bib` file without getting each record manually.
-  - The `filltex` bash script put everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
+  - The `fillbib` python script queries both databases and creates/updates a `.bib` file without getting each record manually.
+  - The `filltex` bash script puts everything together to go from a `.tex` (and no `.bib`) into a `.pdf`.
   - I also provide [TexShop](http://pages.uoregon.edu/koch/texshop) engines for mac users
 
 Of course, all of this works if your citations are specified in the [ADS](http://adsabs.harvard.edu) or [INSPIRE](http://inspirehep.net) format, e.g. `\cite{2016PhRvL.116f1102A}`, `\cite{Abbott:2016blz}`. If you use your personal keys `\cite{amazing_paper}`there's no way to get them from a database.
