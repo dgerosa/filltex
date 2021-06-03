@@ -87,7 +87,9 @@ if __name__ == "__main__":
         if m:
             cites.update(m.group(1).split(','))     # split by commas
 
-    cites= cites.difference(['REVTEX41Control','apsrev41Control']) # Remove annoying entries of revtex
+    cites= cites.difference([
+        'REVTEX41Control','apsrev41Control',
+        'REVTEX42Control','apsrev42Control']) # Remove annoying entries of revtex
 
     print("Seek:", cites)
 
