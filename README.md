@@ -60,16 +60,45 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ### fillbib (script)
 
-***`fillbib`*** looks for citations into a `.aux` file and create/update a `.bib` with the records found on ADS and INSPIRE.
-Usage:
+***`fillbib`*** has two working modes. It can either look for citations into a `.aux` file and create/update a bibtex file with the records found on ADS and INSPIRE, or it can fetch a list of bibtex entries specified from the command line from ADS or INSPIRE.
 
-    python fillbib.py <aux file> <bib file>
+    usage: fillbib.py [-h] [--generate] [--journal_arXiv_fallback]
+                      [--max-num-authors MAX_NUM_AUTHORS]
+                      [--num-authors-short NUM_AUTHORS_SHORT]
+                      {tex,list} ...
+    
+    positional arguments:
+      {tex,list}            Subcommands
+        tex                 Create a bibliography for a tex document
+        list                Create a bibliography given a list of ADS/iNSPIRE keys
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      --generate            Generate the BibTeX entries from the metadata (this is
+                            useful to customize the generated BiBTeX file)
+      --journal_arXiv_fallback
+                            Set the journal entry to be arXiv for unpublished
+                            preprints (iNSPIRE entries only, requres --generate)
+      --max-num-authors MAX_NUM_AUTHORS
+                            Include at most this many authors for each bibtex
+                            entry(iNSPIRE entries only, requres --generate)
+      --num-authors-short NUM_AUTHORS_SHORT
+                            Number of authors to list if the number of authors is
+                            larger than max_num_authors(iNSPIRE entries only,
+                            defaults to max-num-authors, requres --generate)
 
-The second argument `<bib file>` can be omitted, and the code will scan the `.aux` file to guess the name of your bibliography file.
-Arguments can be typed with or without extension, and the script is smart enough to figure it out.
-You need to have `.aux` file already, not just the `.tex`. If you don't have it, run `pdflatex` once.
+The first argument specifies the subcommand to run.
 
-`fillbib` contains two short unit tests, to make sure the web-scarping part is done correctly. You can run them from the `filltex` directiory using
+* `tex` will produce a bibtex file given an `.aux` file
+* `list` will print a bibtex file given a list of keys from CLI
+
+The help for the two subcommands can be obtained with
+
+    fillbib.py {tex,list} --help
+
+When working in `tex` mode it is possible to specify the name of the bibtex file using the option `--bibtex`. Otherwise, the code will scan the `.aux` file to guess the name of your bibliography file.  Arguments can be typed with or without extension, and the script is smart enough to figure it out. You need to have `.aux` file already, not just the `.tex`. If you don't have it, run `pdflatex` once.
+
+`fillbib.py` contains two short unit tests, to make sure the web-scarping part is done correctly. You can run them from the `filltex` directiory using
 
     python
     > import fillbib
@@ -136,7 +165,7 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 
 ## Changes
 
- **v1.0**: Initial release, main functionalities.
+**v1.0**: Initial release, main functionalities.
 
 **v1.1**: Version accepted in JOSS.
 
