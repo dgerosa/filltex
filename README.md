@@ -141,7 +141,7 @@ A short `example.tex` file is provided, where you can try this new way of writin
 
 ### Manual installation from repository
 
-If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually:
+If you don't like pip (but why wouldn't you?), you can install the code manually:
 
     git clone https://github.com/dgerosa/filltex.git # Clone repo
     cd filltex
@@ -161,7 +161,7 @@ If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.
 ## Credits
 The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). If you find bugs, want to contribute to this project (any help is welcome!) or need help with it, just open an issue here on GitHub.
 
-The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)). Key contributions from [David Radice](https://github.com/dradice). We also thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. [TexCount](http://app.uio.no/ifi/texcount) is developed by Einar Andreas Rodland. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
+The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)) and was later developed with key contributions from [David Radice](https://github.com/dradice). We also thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. [TexCount](http://app.uio.no/ifi/texcount) is developed by Einar Andreas Rodland. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
 
 ## Changes
 
@@ -174,3 +174,5 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 **v1.3**: Compatible with new ADS "Bumblebee".
 
 **v1.4**: Compatible with new INSPIRE API.
+
+**v1.5**: New `tex` and `list` subcommands.
