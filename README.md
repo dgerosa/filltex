@@ -141,7 +141,7 @@ A short `example.tex` file is provided, where you can try this new way of writin
 
 ### Manual installation from repository
 
-If you don't like pip (but why wouldn't you? [It's great!](https://davidegerosa.com/installpython/)), you can install the code manually:
+If you don't like pip (but why wouldn't you?), you can install the code manually:
 
     git clone https://github.com/dgerosa/filltex.git # Clone repo
     cd filltex
