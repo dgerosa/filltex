@@ -47,7 +47,7 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 #python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
 # Use python 3
 #python3 ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
-fillbib ${FILE}
+fillbib tex ${FILE}
 
 # Fill the bbl file from the bib file
 for file in *.aux ; do
