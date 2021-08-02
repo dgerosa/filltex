@@ -179,7 +179,7 @@ def fillbib_tex(args):
         bibfile = bibfile + '.bib'
 
     else:    # Bibfile specified from argv
-        basename = args.texfile.split('.tex')[0]
+        basename = args.texfile[0].split('.tex')[0]
         auxfile = basename + '.aux'
         bibfile = args.bibtex.split('.bib')[0] + '.bib'
 
