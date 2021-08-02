@@ -66,10 +66,11 @@ def inspire_citation(key,
         return None
     if not generate:
         bib = urllib.urlopen(data['hits']['hits'][0]['links']['bibtex']).read()
+        inspire_key = data['hits']['hits'][0]['metadata']['texkeys'][0]
         if sys.version_info.major >= 3:
-            return bib.decode()
+            return bib.decode().replace(inspire_key, key)
         else:
-            return bib
+            return bib.replace(inspire_key, key)
     metadata = data['hits']['hits'][0]['metadata']
 
     doctype = metadata["document_type"][0]
@@ -282,4 +283,7 @@ if __name__ == "__main__":
     parser_list.set_defaults(func=fillbib_list)
 
     args = parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except:
+        parser.print_usage()
