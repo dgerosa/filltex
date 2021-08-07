@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name = 'filltex',
-      version = '1.5',
+      version = '1.5.1',
       description = 'Automatic queries to ADS and InSPIRE databases to fill LATEX bibliography',
       long_description="See: `github.com/dgerosa/filltex <https://github.com/dgerosa/filltex>`_." ,
       author = 'Davide Gerosa and Michele Vallisneri',
