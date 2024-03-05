@@ -62,31 +62,30 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ***`fillbib`*** has two working modes. It can either look for citations into a `.aux` file and create/update a bibtex file with the records found on ADS and INSPIRE, or it can fetch a list of bibtex entries specified from the command line from ADS or INSPIRE.
 
-    usage: fillbib.py [-h] [--generate] [--journal_arXiv_fallback]
-                      [--max-num-authors MAX_NUM_AUTHORS]
-                      [--num-authors-short NUM_AUTHORS_SHORT]
-                      {tex,list} ...
-    
-    positional arguments:
-      {tex,list}            Subcommands
-        tex                 Create a bibliography for a tex document
-        list                Create a bibliography given a list of ADS/iNSPIRE keys
-    
-    optional arguments:
-      -h, --help            show this help message and exit
-      --generate            Generate the BibTeX entries from the metadata (this is
-                            useful to customize the generated BiBTeX file)
-      --journal_arXiv_fallback
-                            Set the journal entry to be arXiv for unpublished
-                            preprints (iNSPIRE entries only, requres --generate)
-      --max-num-authors MAX_NUM_AUTHORS
-                            Include at most this many authors for each bibtex
-                            entry(iNSPIRE entries only, requres --generate)
-      --num-authors-short NUM_AUTHORS_SHORT
-                            Number of authors to list if the number of authors is
-                            larger than max_num_authors(iNSPIRE entries only,
-                            defaults to max-num-authors, requres --generate)
-
+	usage: fillbib.py [-h] [--generate] [--journal_arXiv_fallback]
+	                  [--max-num-authors MAX_NUM_AUTHORS]
+	                  [--num-authors-short NUM_AUTHORS_SHORT]
+	                  {tex,list} ...
+	
+	positional arguments:
+	  {tex,list}            Subcommands
+	    tex                 Create a bibliography for a tex document
+	    list                Create a bibliography given a list of ADS/iNSPIRE keys
+	
+	options:
+	  -h, --help            show this help message and exit
+	  --generate            Generate the BibTeX entries from the metadata (this is useful to
+	                        customize the generated BiBTeX file)
+	  --journal_arXiv_fallback
+	                        Set the journal entry to be arXiv for unpublished preprints
+	                        (iNSPIRE entries only, requres --generate)
+	  --max-num-authors MAX_NUM_AUTHORS
+	                        Include at most this many authors for each bibtex entry(iNSPIRE
+	                        entries only, requres --generate)
+	  --num-authors-short NUM_AUTHORS_SHORT
+	                        Number of authors to list if the number of authors is larger than
+	                        max_num_authors(iNSPIRE entries only, defaults to max-num-authors,
+	                        requres --generate)
 The first argument specifies the subcommand to run.
 
 * `tex` will produce a bibtex file given an `.aux` file
@@ -120,6 +119,10 @@ or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 Argument can be with or without extension, and the script is smart enough to figure it out.
 
 Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` will download the file for you if you need it.
+
+By default, the script will replace some journal name with their ISO4 abbreviations. You can disable this with the `journals` flag. Feel free to send me pull requests with new journals that should be added here!
+
+By default, the script will also change your `.tex` file if an ADS arXiv entry has been published (see below). You can disable this be turning off `updatepublushe`, see the help page.  
 
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document. 
 

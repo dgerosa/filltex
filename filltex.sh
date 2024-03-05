@@ -34,7 +34,7 @@ echo "filltex is compiling ${FILE}.tex"
 # Get the journal abbreviations from ADS
 if grep -q 'aas_macros' ${FILE}.tex; then # check if you need them
   if [ ! -f 'aas_macros.sty' ]; then
-    curl -s 'http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty' > 'aas_macros.sty'
+    curl -s 'https://adsabs.harvard.edu/abs_doc/aas_macros.sty' > 'aas_macros.sty'
   fi
 fi
 
@@ -47,6 +47,7 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 #python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
 # Use python 3
 #python3 ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
+#python fillbib.py tex ${FILE}
 fillbib tex ${FILE}
 
 # Fill the bbl file from the bib file

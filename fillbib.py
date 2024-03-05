@@ -33,14 +33,7 @@ def ads_citation(c): # download single ADS citation
     bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
     bib=html.unescape(bib)
 
-    if 'arXiv' in c: # Take care of preprint on ADS
-        bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
-        return bib
-
-    elif bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
-        return bib
-    else:
-        return None
+    return bib
 
 def inspire_citation(key,
         generate=False,
@@ -184,6 +177,9 @@ def fillbib_tex(args):
         auxfile = basename + '.aux'
         bibfile = args.bibtex.split('.bib')[0] + '.bib'
 
+    if args.updatepublished:
+        with open(basename+".tex", 'r') as texfile:
+            texdata = texfile.read()
 
     # Get all citations from aux file. Citations will look like \citation{2004PhRvD..69j4017P,2004PhRvD..69j4017P}
     cites = set() # use a set (no repetitions)
@@ -218,6 +214,22 @@ def fillbib_tex(args):
 
                 try:
                     bib = ads_citation(c)
+
+                    cfound = bib.split("{")[1].split(',')[0]
+                    
+                    if  cfound == c: # Check you got what you where looking for
+                        pass
+                    elif 'arXiv' in c: # Take care of preprint on ADS
+                        
+                        if args.updatepublished:
+                            print("ADS replace", c, "-->", cfound)
+                            # This substitute the new ID into the tex file. Use at your own risk. 
+                            texdata = texdata.replace(c, cfound)
+
+                        else: 
+                            # This subsitute the arxiv id back in to the bib file
+                            bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
+
                     bibtex.write(bib)
                     print("ADS Found:", c)
                 except:
@@ -236,7 +248,13 @@ def fillbib_tex(args):
                 except:
                     print("INSPIRE Not found:", c)
 
+
+
     bibtex.close()
+
+    if args.updatepublished:
+        with open(basename+".tex", 'w') as texfile:
+            texfile.write(texdata)
 
     # Clean up journal names
     if args.journals:
@@ -261,9 +279,6 @@ def fillbib_list(args):
                 sys.stderr.write("INSPIRE Not Found: {}\n".format(c))
             else:
                 print(bib)
-
-
-
 
 
 def curly(x):
@@ -348,16 +363,22 @@ def journals(bibfile):
             ['Astroparticle Physics','Astropart. Phys.','Astropart. Phys.'],
             ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
             ['Classical and Quantum Gravity','Class. Quant. Grav.','Class. Quantum Grav.'], #ISI list not correct
+            ['Communications in Mathematical Physics', 'Commun. Math. Phys.', 'Commun. Math. Phys.'],
+            ['General Relativity and Gravitation', 'Gen. Rel. Grav.', 'Gen. Relat. Gravit.'],
             ['International Journal of Modern Physics D', 'Int. J. Mod. Phys. D', 'Int. J. Mod. Phys. D'], 
+            ['iScience', 'iScience', 'iScience'], 
             ['Journal of Machine Learning Research','J. Machine Learning Res.','J. Mach. Learn. Res.'],
             ['Journal of Physics Conference Series','J. Phys. Conf. Ser.','J. Phys. Conf. Ser.'],
             ['Living Reviews in Relativity', 'Living Rev. Rel.', 'Living Rev. Relativ.'],
             ['Machine Learning: Science and Technology','Mach. Learn. Sci. Tech.','Mach. Learn. Sci. Tech.'], #ISI list not correct
             ['Nature Astronomy', 'Nature Astron.', 'Nat. Astron.'],
+            ['Nature Methods', 'Nature Meth.', 'Nat. Methods'],
             ['Nature Reviews Physics','Nature Rev. Phys.','Nat. Rev. Phys.'],
             ['Physical Review', 'Phys. Rev.', 'Phys. Rev.'],
             ['Physical Review Research', 'Phys. Rev. Res.', 'Phys. Rev. Res.'],
             ['Physical Review X', 'Phys. Rev. X', 'Phys. Rev. X'],
+            ['Proceedings of the Royal Society of London Series A', 'Proc. Roy. Soc. Lond. A', 'P. R. Soc. Lond. A'],
+            ['Rendiconti Lincei. Scienze Fisiche e Naturali', 'Rend. Lincei Sci. Fis. Nat.', 'Rend. Lincei-Sci. Fis.'],
             ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
             ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
             ['Reviews of Modern Physics', 'Rev. Mod. Phys.', 'Rev. Mod. Phys.'],
@@ -388,6 +409,7 @@ def journals(bibfile):
 
 
 if __name__ == "__main__":
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--generate", action="store_true",
             help="Generate the BibTeX entries from the metadata "
@@ -406,7 +428,8 @@ if __name__ == "__main__":
     parser_tex = subparsers.add_parser("tex", help="Create a bibliography for a tex document")
     parser_tex.add_argument("--bibtex", help="The BiBTeX file to use (if not specified we try to find out)")
     parser_tex.add_argument("texfile", nargs=1, help="The (La)TeX file to process")
-    parser_tex.add_argument('--journals', dest='journals', default=True, action='store_true')
+    parser_tex.add_argument('--journals', dest='journals', help="Replace known journal abbreviations", default=True, action='store_true')
+    parser_tex.add_argument('--updatepublished', dest='updatepublished', help="Replace ADS arxiv entries in .tex file if published", default=True, action='store_true')
     parser_tex.set_defaults(func=fillbib_tex)
 
     parser_list = subparsers.add_parser("list", help="Create a bibliography given a list of ADS/iNSPIRE keys")
@@ -415,7 +438,11 @@ if __name__ == "__main__":
 
 
     args = parser.parse_args()
-    try:
-        args.func(args)
-    except:
-        parser.print_usage()
+    args.func(args)
+    #try:
+    #    args.func(args)
+    #except:
+    #    parser.print_usage()
+
+
+
