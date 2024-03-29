@@ -220,10 +220,10 @@ def fillbib_tex(args):
                     if  cfound == c: # Check you got what you where looking for
                         pass
                     elif 'arXiv' in c: # Take care of preprint on ADS
-                        
-                        if args.updatepublished:
+
+                        if args.updatepublished and '.tmp.' not in cfound:
                             print("ADS replace", c, "-->", cfound)
-                            # This substitute the new ID into the tex file. Use at your own risk. 
+                            # This substitute the new ID into the tex file. Use at your own risk. The .tmp. condition fixes those stupid MNRAS temp entries.
                             texdata = texdata.replace(c, cfound)
 
                         else: 

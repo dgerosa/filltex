@@ -50,16 +50,20 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 #python fillbib.py tex ${FILE}
 fillbib tex ${FILE}
 
-# Fill the bbl file from the bib file
-for file in *.aux ; do
-    bibtex $file
+
+for i in {1..2}; do
+
+  # Fill the bbl file from the bib file
+  for file in *.aux ; do
+      bibtex $file
+  done
+
+  pdflatex --synctex=1 -halt-on-error ${FILE}.tex
+  [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
+
+  pdflatex --synctex=1 -halt-on-error ${FILE}.tex
+  [[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 done
-
-pdflatex --synctex=1 -halt-on-error ${FILE}.tex
-[[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
-
-pdflatex --synctex=1 -halt-on-error ${FILE}.tex
-[[ $? -eq 1 ]] && echo "pdflatex got an error" && exit
 
 # Count the words
 #perl ${SCRIPT_LOCATION}/texcount.pl "${FILE}".tex
