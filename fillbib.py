@@ -368,6 +368,7 @@ def journals(bibfile):
             ['International Journal of Modern Physics D', 'Int. J. Mod. Phys. D', 'Int. J. Mod. Phys. D'], 
             ['iScience', 'iScience', 'iScience'], 
             ['Journal of Machine Learning Research','J. Machine Learning Res.','J. Mach. Learn. Res.'],
+            ['Journal of Mathematical Analysis and Applications','J. Math. Anal. Appl.','J. Math. Anal. Appl'],
             ['Journal of Physics Conference Series','J. Phys. Conf. Ser.','J. Phys. Conf. Ser.'],
             ['Living Reviews in Relativity', 'Living Rev. Rel.', 'Living Rev. Relativ.'],
             ['Machine Learning: Science and Technology','Mach. Learn. Sci. Tech.','Mach. Learn. Sci. Tech.'], #ISI list not correct
