@@ -363,6 +363,8 @@ def journals(bibfile):
             ['Astronomy and Computing','Astron. Comput.','Astron. Comput.'],
             ['Astroparticle Physics','Astropart. Phys.','Astropart. Phys.'],
             ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
+            ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
+            ['Bulletin of the American Astronomical Society','Bull. Am. Astron. Soc.','Bull. Am. Astron. Soc.']
             ['Classical and Quantum Gravity','Class. Quant. Grav.','Class. Quantum Grav.'], #ISI list not correct
             ['Communications in Mathematical Physics', 'Commun. Math. Phys.', 'Commun. Math. Phys.'],
             ['General Relativity and Gravitation', 'Gen. Rel. Grav.', 'Gen. Relat. Gravit.'],
