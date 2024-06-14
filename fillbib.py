@@ -378,6 +378,7 @@ def journals(bibfile):
             ['Nature Astronomy', 'Nature Astron.', 'Nat. Astron.'],
             ['Nature Methods', 'Nature Meth.', 'Nat. Methods'],
             ['Nature Reviews Physics','Nature Rev. Phys.','Nat. Rev. Phys.'],
+            ['Physica D Nonlinear Phenomena', 'Physica D: Nonlinear Phenomena', 'Phys. D: Nonlinear Phenom.'],
             ['Physical Review', 'Phys. Rev.', 'Phys. Rev.'],
             ['Physical Review Research', 'Phys. Rev. Res.', 'Phys. Rev. Res.'],
             ['Physical Review X', 'Phys. Rev. X', 'Phys. Rev. X'],
