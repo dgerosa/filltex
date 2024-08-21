@@ -360,6 +360,7 @@ def journals(bibfile):
             ####
             ['Advances in Space Research','Adv. Space Res.','Adv. Space Res.'], #ISI list not correct
             ['American Institute of Physics Conference Series','AIP Conf. Proc.','AIP Conf. Proc.'],
+            ['Annals of Data Science','Ann. Data Sci.','Ann. Data Sci.'],
             ['Astronomy and Computing','Astron. Comput.','Astron. Comput.'],
             ['Astroparticle Physics','Astropart. Phys.','Astropart. Phys.'],
             ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
