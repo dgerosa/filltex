@@ -374,20 +374,26 @@ def journals(bibfile):
             ['Journal of Machine Learning Research','J. Machine Learning Res.','J. Mach. Learn. Res.'],
             ['Journal of Mathematical Analysis and Applications','J. Math. Anal. Appl.','J. Math. Anal. Appl'],
             ['Journal of Physics Conference Series','J. Phys. Conf. Ser.','J. Phys. Conf. Ser.'],
+            ['Journal of Statistical Physics','J. Statist. Phys.','J. Stat. Phys.'],
+            ['Journal of the Royal Statistical Society B','J. Roy. Statist. Soc. B','J. Roy. Statist. Soc. B'],
             ['Living Reviews in Relativity', 'Living Rev. Rel.', 'Living Rev. Relativ.'],
             ['Machine Learning: Science and Technology','Mach. Learn. Sci. Tech.','Mach. Learn. Sci. Tech.'], #ISI list not correct
+            ['Machine Learning','Machine Learning','Mach. Learn.'],
             ['Nature Astronomy', 'Nature Astron.', 'Nat. Astron.'],
             ['Nature Methods', 'Nature Meth.', 'Nat. Methods'],
             ['Nature Reviews Physics','Nature Rev. Phys.','Nat. Rev. Phys.'],
-            ['Physica D Nonlinear Phenomena', 'Physica D: Nonlinear Phenomena', 'Phys. D: Nonlinear Phenom.'],
+            ['Physica A Statistical Mechanics and its Applications','Physica A','Physica A'],
+            ['Physica D Nonlinear Phenomena', 'Physica D', 'Physica D'],
             ['Physical Review', 'Phys. Rev.', 'Phys. Rev.'],
             ['Physical Review Research', 'Phys. Rev. Res.', 'Phys. Rev. Res.'],
             ['Physical Review X', 'Phys. Rev. X', 'Phys. Rev. X'],
+            ['Physics Letters A', 'Phys. Lett. A', 'Phys. Lett. A'],
             ['Proceedings of the Royal Society of London Series A', 'Proc. Roy. Soc. Lond. A', 'P. R. Soc. Lond. A'],
             ['Rendiconti Lincei. Scienze Fisiche e Naturali', 'Rend. Lincei Sci. Fis. Nat.', 'Rend. Lincei-Sci. Fis.'],
             ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
             ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
             ['Reviews of Modern Physics', 'Rev. Mod. Phys.', 'Rev. Mod. Phys.'],
+            ['SIAM Journal on Scientific Computing','SIAM J. Sci. Comput.','SIAM J. Sci. Comput.'],
             ['The Journal of Open Source Software','J. Open Source Softw.','J. Open Source Softw.'],
             ]
 
@@ -395,6 +401,7 @@ def journals(bibfile):
         filedata = bibtex.read()
 
     for j in journals:
+        print(j)
         if j[0]:
             filedata = filedata.replace(curly(j[0]), curly(j[2]))
         if j[1]:

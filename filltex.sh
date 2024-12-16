@@ -47,7 +47,7 @@ pdflatex --synctex=1 -halt-on-error ${FILE}.tex
 #python ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
 # Use python 3
 #python3 ${SCRIPT_LOCATION}/fillbib.py "${FILE}"
-#python fillbib.py tex ${FILE}
+#python ../filltex/fillbib.py tex ${FILE}
 fillbib tex ${FILE}
 
 
