@@ -371,6 +371,7 @@ def journals(bibfile):
             ['General Relativity and Gravitation', 'Gen. Rel. Grav.', 'Gen. Relat. Gravit.'],
             ['International Journal of Modern Physics D', 'Int. J. Mod. Phys. D', 'Int. J. Mod. Phys. D'], 
             ['iScience', 'iScience', 'iScience'], 
+            ['Journal of High Energy Physics','JHEP','J. High Energy Phys.'],
             ['Journal of Machine Learning Research','J. Machine Learning Res.','J. Mach. Learn. Res.'],
             ['Journal of Mathematical Analysis and Applications','J. Math. Anal. Appl.','J. Math. Anal. Appl'],
             ['Journal of Physics Conference Series','J. Phys. Conf. Ser.','J. Phys. Conf. Ser.'],
@@ -393,6 +394,7 @@ def journals(bibfile):
             ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
             ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
             ['Reviews of Modern Physics', 'Rev. Mod. Phys.', 'Rev. Mod. Phys.'],
+            ['Science Advances','Sci. Adv.','Sci. Adv.'],
             ['SIAM Journal on Scientific Computing','SIAM J. Sci. Comput.','SIAM J. Sci. Comput.'],
             ['The Journal of Open Source Software','J. Open Source Softw.','J. Open Source Softw.'],
             ]
@@ -406,6 +408,7 @@ def journals(bibfile):
             filedata = filedata.replace(curly(j[0]), curly(j[2]))
         if j[1]:
             filedata = filedata.replace(curly(j[1]), curly(j[2]))
+            filedata = filedata.replace('journal = "'+j[1], 'journal = "'+j[2])
 
     ### Clean up arxiv repeated information in ADS records:
     filedata = filedata.replace('arXiv e-prints', '{}')
