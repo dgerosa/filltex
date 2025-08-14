@@ -167,7 +167,6 @@ The code is developed and maintained by [Davide Gerosa](www.davidegerosa.com). I
 The idea started from [this](http://www.vallis.org/salon/) `python` course taught by [Michele Vallisneri](http://www.vallis.org/) at Caltech (and in particular from [this example](http://www.vallis.org/salon/summary-2.html)) and was later developed with key contributions from [David Radice](https://github.com/dradice). We also thank [Lars Holm Nielsen](https://github.com/lnielsen), reviewer for [The Journal of Open Software](http://joss.theoj.org/), for several suggestions which improved `filltex`. [TexCount](http://app.uio.no/ifi/texcount) is developed by Einar Andreas Rodland. Useful info on the INSPIRE and ADS APIs are available [here](https://inspirehep.net/info/hep/pub_list) and [here](https://github.com/adsabs/adsabs-dev-api).
 
 ## Changes
-
 **v1.0**: Initial release, main functionalities.
 
 **v1.1**: Version accepted in JOSS.
@@ -179,3 +178,5 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 **v1.4**: Compatible with new INSPIRE API.
 
 **v1.5**: New `tex` and `list` subcommands.
+
+**v1.7**: New treatment of journal names, converting to [ISO4](https://en.wikipedia.org/wiki/ISO_4) when available.
