@@ -33,14 +33,7 @@ def ads_citation(c): # download single ADS citation
     bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
     bib=html.unescape(bib)
 
-    if 'arXiv' in c: # Take care of preprint on ADS
-        bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
-        return bib
-
-    elif bib.split("{")[1].split(',')[0] == c: # Check you got what you where looking for
-        return bib
-    else:
-        return None
+    return bib
 
 def inspire_citation(key,
         generate=False,
@@ -168,8 +161,8 @@ def test_inspire(): # test single INSPIRE web scraping
     known_output = '@article{Abbott:2016blz,\n    author = "Abbott, B.P. and Abbott, R. and Abbott, T.D. and Abernathy, M.R. and Acernese, F. and others",\n    collaboration = "LIGO Scientific, Virgo",\n    title = "{Observation of Gravitational Waves from a Binary Black Hole Merger}",\n    eprint = "1602.03837",\n    archivePrefix = "arXiv",\n    primaryClass = "gr-qc",\n    doi = "10.1103/PhysRevLett.116.061102",\n    journal = "Phys.Rev.Lett.",\n    volume = "116",\n    number = "6",\n    year = "2016"\n}'
     assert inspire_citation(test_key, generate=True, max_num_authors=5) == known_output
 
-
 def fillbib_tex(args):
+
     if args.bibtex is None:     # Get the name of the bibfile from the aux file
         basename = args.texfile[0].split('.tex')[0]
         auxfile = basename + '.aux'
@@ -184,6 +177,9 @@ def fillbib_tex(args):
         auxfile = basename + '.aux'
         bibfile = args.bibtex.split('.bib')[0] + '.bib'
 
+    if args.updatepublished:
+        with open(basename+".tex", 'r') as texfile:
+            texdata = texfile.read()
 
     # Get all citations from aux file. Citations will look like \citation{2004PhRvD..69j4017P,2004PhRvD..69j4017P}
     cites = set() # use a set (no repetitions)
@@ -218,6 +214,22 @@ def fillbib_tex(args):
 
                 try:
                     bib = ads_citation(c)
+
+                    cfound = bib.split("{")[1].split(',')[0]
+                    
+                    if  cfound == c: # Check you got what you where looking for
+                        pass
+                    elif 'arXiv' in c: # Take care of preprint on ADS
+
+                        if args.updatepublished and '.tmp.' not in cfound:
+                            print("ADS replace", c, "-->", cfound)
+                            # This substitute the new ID into the tex file. Use at your own risk. The .tmp. condition fixes those stupid MNRAS temp entries.
+                            texdata = texdata.replace(c, cfound)
+
+                        else: 
+                            # This subsitute the arxiv id back in to the bib file
+                            bib = bib.split("{")[0]+"{"+c+","+",".join(bib.split(",")[1:])
+
                     bibtex.write(bib)
                     print("ADS Found:", c)
                 except:
@@ -236,8 +248,19 @@ def fillbib_tex(args):
                 except:
                     print("INSPIRE Not found:", c)
 
+
+
     bibtex.close()
 
+    if args.updatepublished:
+        with open(basename+".tex", 'w') as texfile:
+            texfile.write(texdata)
+
+    # Clean up journal names
+    if args.journals:
+        journals(bibfile)
+
+    
 def fillbib_list(args):
     for c in args.keys:
         if not c[0].isalpha():
@@ -257,7 +280,153 @@ def fillbib_list(args):
             else:
                 print(bib)
 
+
+def curly(x):
+   '''Just a curly bracket sandwich.'''
+   return "{"+x+"}"
+
+def journals(bibfile):
+    '''
+    Clean up the names of some journals using their ISO4 standards.
+    Journal abbreviations are taken from https://images.webofknowledge.com/images/help/WOS/A_abrvjt.html
+    If your favourite journal is missing, please add it and send a pull request. Thanks!
+    '''
+
+    # The format is: [ADS name, INSPIRE name, ISO4 abbreviation]
+    journals = [
+            ####
+            # These are the journals from the ADS macros: https://ui.adsabs.harvard.edu/help/actions/journal-macros
+            # I could not find them all on INSPIRE, some are missing.
+            ####
+            ['\\aj', 'Astron. J.', 'Astron. J.'],
+            ['\\actaa', 'Acta Astron.', 'Acta Astronom.'],
+            ['\\araa', 'Ann. Rev. Astron. Astrophys.', 'Annu. Rev. Astron. Astrophys.'],
+            ['\\apj', 'Astrophys. J.', 'Astrophys. J.'],
+            ['\\apjl', 'Astrophys. J. Lett.', 'Astrophys. J. Lett.'],
+            ['\\apjs', 'Astrophys. J. Suppl.', 'Astrophys. J. Supp. S.'],
+            ['\\ao', 'Appl. Opt.', 'Appl. Optics'],
+            ['\\apss', 'Astrophys. Space Sci.', 'Astrophys. Space Sci.'],
+            ['\\aap', 'Astron. Astrophys.', 'Astron. Astrophys.'],
+            ['\\aapr', 'Astron. Astrophys. Rev.', 'Astron. Astrophys. Rev.'],
+            ['\\aaps', 'Astron. Astrophys. Suppl. Ser.', 'Astron. Astrophys. Sup.'],
+            ['\\azh', '', 'Astron. Zh.'], #Not sure. Various names on inspire
+            ['\\baas', 'Bull. Am. Astron. Soc.', 'Bull. Am. Astron. Soc.'],
+            ['\\bac', 'Bull. Astron. Inst. Czech.', 'B. Astron. I. Czech.'],
+            ['\\caa', 'Chin. Astron. Astrophys.', 'Chinese Astron. Astr.'],
+            ['\\cjaa', 'Chin. J. Astron. Astrophys.', 'Chinese J. Astron. Ast.'],
+            ['\\icarus', 'Icarus', 'Icarus'],
+            ['\\jcap', 'JCAP', 'J. Cosmology Astropart. Phys.'],
+            ['\\jrasc', 'J. Roy. Astron. Soc. Canada', 'J. Roy Astron. Soc. Can.'],
+            ['\\memras', 'Mem. Roy. Astron. Soc.', 'Mem. R. Astron. Soc.'],
+            ['\\mnras', 'Mon. Not. Roy. Astron. Soc.', 'Mon. Not. R. Astron. Soc.'],
+            ['\\na', 'New Astron.', 'New Astron.'],
+            ['\\nar', 'New Astron. Rev.', 'New Astron. Rev.'],
+            ['\\pra', 'Phys. Rev. A', 'Phys. Rev. A'],
+            ['\\prb', 'Phys. Rev. B', 'Phys. Rev. B'],
+            ['\\prc', 'Phys. Rev. C', 'Phys. Rev. C'],
+            ['\\prd', 'Phys. Rev. D', 'Phys. Rev. D'],
+            ['\\pre', 'Phys. Rev. E', 'Phys. Rev. E'],
+            ['\\prl', 'Phys. Rev. Lett.', 'Phys. Rev. Lett.'],
+            ['\\pasa', 'Publ. Astron. Soc. Austral.', 'Publ. Astron. Soc. Aust.'],
+            ['\\pasp', 'Publ. Astron. Soc. Pac.', 'Publ. Astron. Soc. Pac.'],
+            ['\\pasj', 'Publ. Astron. Soc. Jap.', 'Publ. Astron. Soc. Jpn.'],
+            ['\\rmxaa', 'Rev. Mex. Astron. Astrofis.', 'Rev. Mex. Astron. Astr.'],
+            ['\\qjras', 'Q. J. Roy. Astron. Soc.', 'Q. J. Roy. Astron. Soc.'],
+            ['\\skytel', 'Sky Telesc.', 'Sky Telescope'],
+            ['\\solphys', 'Solar Phys.', 'Sol. Phys.'],
+            ['\\sovast', 'Sov. Astron.', 'Sov. Astron.'],
+            ['\\ssr', 'Space Sci. Rev.', 'Space Sci. Rev.'],
+            ['\\zap', 'Z. Astrophys.', 'Z. Astrophys.'],
+            ['\\nat', 'Nature', 'Nature'],
+            ['\\iaucirc', 'IAU Circ.', 'IAU Circ.'],
+            ['\\aplett', 'Astrophys. Lett.', 'Astrophys. Lett.'],
+            ['\\apspr', '', 'Astrophys.~Space~Phys.~Res.'], #Could not find it on INSPIRE
+            ['\\bain', 'Bull. Astron. Inst. Netherlands', 'B. Astron. I. Neth.'],
+            ['\\fcp', 'Fund. Cosmic Phys.', 'Fund. Cosmic Phys.'],
+            ['\\gca', 'Geochim. Cosmochim. Acta', 'Geochim. Cosmochim. Ac.'],
+            ['\\grl', 'Geophys. Res. Lett.', 'Geophys. Res. Lett.'],
+            ['\\jcp', 'J. Chem. Phys.', 'J. Chem. Phys.'],
+            ['\\jgr', 'J. Geophys. Res.', 'J. Geophys. Res.'],
+            ['\\jqsrt', 'J. Quant. Spectrosc. Radiat. Trans.', 'J. Quant. Sprectrosc. Ra.'],
+            ['\\memsai', 'Mem. Soc. Ast. It.', 'Mem. Soc. Astron. Ital.'],
+            ['\\nphysa', 'Nucl. Phys. A', 'Nucl. Phys. A'],
+            ['\\physrep', 'Phys. Rept.', 'Phys. Rep.'],
+            ['\\physscr', 'Phys. Scripta', 'Phys. Scripta'],
+            ['\\planss', 'Planet. Space Sci.', 'Planet. Space Sci.'],
+            ['\\procspie', 'Proc. SPIE Int. Soc. Opt. Eng.', 'P. Soc. Photo.-Opt. Ins.'],
+            ####
+            # [Davide Gerosa] These are journals that I personally encountered. 
+            # Will keep on adding to this list.
+            ####
+            ['Advances in Space Research','Adv. Space Res.','Adv. Space Res.'], #ISI list not correct
+            ['American Institute of Physics Conference Series','AIP Conf. Proc.','AIP Conf. Proc.'],
+            ['Annals of Data Science','Ann. Data Sci.','Ann. Data Sci.'],
+            ['Astronomy and Computing','Astron. Comput.','Astron. Comput.'],
+            ['Astroparticle Physics','Astropart. Phys.','Astropart. Phys.'],
+            ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
+            ['Astrophysics and Space Science Library','Astrophys. Space Sci. Libr.','Astrophys. Space Sc. L.'],
+            ['Bulletin of the American Astronomical Society','Bull. Am. Astron. Soc.','Bull. Am. Astron. Soc.'],
+            ['Classical and Quantum Gravity','Class. Quant. Grav.','Class. Quantum Grav.'], #ISI list not correct
+            ['Communications in Mathematical Physics', 'Commun. Math. Phys.', 'Commun. Math. Phys.'],
+            ['Frontiers in Astronomy and Space Sciences','Front. Astron. Space Sci.','Front. Astron. Space Sci.'],
+            ['General Relativity and Gravitation', 'Gen. Rel. Grav.', 'Gen. Relat. Gravit.'],
+            ['International Journal of Modern Physics D', 'Int. J. Mod. Phys. D', 'Int. J. Mod. Phys. D'], 
+            ['iScience', 'iScience', 'iScience'], 
+            ['Journal of High Energy Physics','JHEP','J. High Energy Phys.'],
+            ['Journal of Machine Learning Research','J. Machine Learning Res.','J. Mach. Learn. Res.'],
+            ['Journal of Mathematical Analysis and Applications','J. Math. Anal. Appl.','J. Math. Anal. Appl'],
+            ['Journal of Physics Conference Series','J. Phys. Conf. Ser.','J. Phys. Conf. Ser.'],
+            ['Journal of Statistical Physics','J. Statist. Phys.','J. Stat. Phys.'],
+            ['Journal of the Royal Statistical Society B','J. Roy. Statist. Soc. B','J. Roy. Statist. Soc. B'],
+            ['Living Reviews in Relativity', 'Living Rev. Rel.', 'Living Rev. Relativ.'],
+            ['Machine Learning: Science and Technology','Mach. Learn. Sci. Tech.','Mach. Learn. Sci. Tech.'], #ISI list not correct
+            ['Machine Learning','Machine Learning','Mach. Learn.'],
+            ['Nature Astronomy', 'Nature Astron.', 'Nat. Astron.'],
+            ['Nature Methods', 'Nature Meth.', 'Nat. Methods'],
+            ['Nature Reviews Physics','Nature Rev. Phys.','Nat. Rev. Phys.'],
+            ['Physica A Statistical Mechanics and its Applications','Physica A','Physica A'],
+            ['Physica D Nonlinear Phenomena', 'Physica D', 'Physica D'],
+            ['Physical Review', 'Phys. Rev.', 'Phys. Rev.'],
+            ['Physical Review Research', 'Phys. Rev. Res.', 'Phys. Rev. Res.'],
+            ['Physical Review X', 'Phys. Rev. X', 'Phys. Rev. X'],
+            ['Physics Letters A', 'Phys. Lett. A', 'Phys. Lett. A'],
+            ['Proceedings of the Royal Society of London Series A', 'Proc. Roy. Soc. Lond. A', 'P. R. Soc. Lond. A'],
+            ['Rendiconti Lincei. Scienze Fisiche e Naturali', 'Rend. Lincei Sci. Fis. Nat.', 'Rend. Lincei-Sci. Fis.'],
+            ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
+            ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
+            ['Reviews of Modern Physics', 'Rev. Mod. Phys.', 'Rev. Mod. Phys.'],
+            ['Science Advances','Sci. Adv.','Sci. Adv.'],
+            ['SIAM Journal on Scientific Computing','SIAM J. Sci. Comput.','SIAM J. Sci. Comput.'],
+            ['The Journal of Open Source Software','J. Open Source Softw.','J. Open Source Softw.'],
+            ]
+
+    with open(bibfile, 'r') as bibtex :
+        filedata = bibtex.read()
+
+    for j in journals:
+        print(j)
+        if j[0]:
+            filedata = filedata.replace(curly(j[0]), curly(j[2]))
+        if j[1]:
+            filedata = filedata.replace(curly(j[1]), curly(j[2]))
+            filedata = filedata.replace('journal = "'+j[1], 'journal = "'+j[2])
+
+    ### Clean up arxiv repeated information in ADS records:
+    filedata = filedata.replace('arXiv e-prints', '{}')
+    filedata = re.sub('pages = {arXiv:[0-9]+.[0-9]+},','',filedata)
+    filedata = re.sub('Pages = {arXiv:[0-9]+.[0-9]+},','',filedata)
+    filedata = re.sub('eid = {arXiv:[0-9]+.[0-9]+},','',filedata)
+    filedata = re.sub('Eid = {arXiv:[0-9]+.[0-9]+},','',filedata)
+    filedata = re.sub('doi = {[0-9]+.[0-9]+/arXiv.[0-9]+.[0-9]+},','',filedata)
+
+    with open(bibfile, 'w') as bibtex :
+        bibtex.write(filedata)
+
+
+
+
 if __name__ == "__main__":
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--generate", action="store_true",
             help="Generate the BibTeX entries from the metadata "
@@ -276,14 +445,21 @@ if __name__ == "__main__":
     parser_tex = subparsers.add_parser("tex", help="Create a bibliography for a tex document")
     parser_tex.add_argument("--bibtex", help="The BiBTeX file to use (if not specified we try to find out)")
     parser_tex.add_argument("texfile", nargs=1, help="The (La)TeX file to process")
+    parser_tex.add_argument('--journals', dest='journals', help="Replace known journal abbreviations", default=True, action='store_true')
+    parser_tex.add_argument('--updatepublished', dest='updatepublished', help="Replace ADS arxiv entries in .tex file if published", default=True, action='store_true')
     parser_tex.set_defaults(func=fillbib_tex)
 
     parser_list = subparsers.add_parser("list", help="Create a bibliography given a list of ADS/iNSPIRE keys")
     parser_list.add_argument("keys", nargs="+", help="ADS/iNSPIRE keys to fetch")
     parser_list.set_defaults(func=fillbib_list)
 
+
     args = parser.parse_args()
-    try:
-        args.func(args)
-    except:
-        parser.print_usage()
+    args.func(args)
+    #try:
+    #    args.func(args)
+    #except:
+    #    parser.print_usage()
+
+
+
