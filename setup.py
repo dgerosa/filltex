@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
+# rm -rf dist/ build/ *.egg-info
+# python -m build
+# twine upload dist/*
+
 from distutils.core import setup
 
 setup(name = 'filltex',
-      version = '1.6.1',
+      version = '1.7.0',
       description = 'Automatic queries to ADS and InSPIRE databases to fill LATEX bibliography',
       long_description="See: `github.com/dgerosa/filltex <https://github.com/dgerosa/filltex>`_." ,
       author = 'Davide Gerosa and Michele Vallisneri',
