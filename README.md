@@ -121,7 +121,7 @@ Argument can be with or without extension, and the script is smart enough to fig
 
 The script will replace some journal name with their [ISO4](https://en.wikipedia.org/wiki/ISO_4) abbreviations. You can disable this with the `journals` flag. Please send me pull requests with new journals that should be added here! ADS bibliography items contain some journal macros, which are also replaced in favour of ISO4. If you disable the ISO4 conversion, you'll need to use [`aas_macros.sty`](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty).
 
-By default, the script will also change your `.tex` file if an ADS arXiv entry has been published (see below). You can disable this be turning off `updatepublushe`, see the help page.  
+By default, the script will also change your `.tex` file if an ADS arXiv entry has been published (see below). You can disable this by turning off `updatepublished`, see the help page.  
 
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document. 
 
@@ -179,4 +179,5 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 **v1.5**: New `tex` and `list` subcommands.
 
 **v1.7**: New treatment of journal names, converting to ISO4 when available.
+
 
