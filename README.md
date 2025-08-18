@@ -118,9 +118,8 @@ or simply using [`pytest`](https://docs.pytest.org/en/latest/contents.html#toc)
 
 Argument can be with or without extension, and the script is smart enough to figure it out.
 
-Since ADS bibliography items contains journal abbreviations, you need to use `aas_macros.sty` (available [here](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty)). Don't worry, you just put `\include{aas_macros}` in your `.tex` file, and `filltex` will download the file for you if you need it.
 
-By default, the script will replace some journal name with their ISO4 abbreviations. You can disable this with the `journals` flag. Feel free to send me pull requests with new journals that should be added here!
+The script will replace some journal name with their [ISO4](https://en.wikipedia.org/wiki/ISO_4) abbreviations. You can disable this with the `journals` flag. Please send me pull requests with new journals that should be added here! ADS bibliography items contain some journal macros, which are also replaced in favour of ISO4. If you disable the ISO4 conversion, you'll need to use [`aas_macros.sty`](http://doc.adsabs.harvard.edu/abs_doc/aas_macros.sty).
 
 By default, the script will also change your `.tex` file if an ADS arXiv entry has been published (see below). You can disable this be turning off `updatepublushe`, see the help page.  
 
@@ -179,4 +178,5 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 
 **v1.5**: New `tex` and `list` subcommands.
 
-**v1.7**: New treatment of journal names, converting to [ISO4](https://en.wikipedia.org/wiki/ISO_4) when available.
+**v1.7**: New treatment of journal names, converting to ISO4 when available.
+
