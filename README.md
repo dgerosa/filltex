@@ -62,30 +62,6 @@ Of course, all of this works if your citations are specified in the [ADS](http:/
 
 ***`fillbib`*** has two working modes. It can either look for citations into a `.aux` file and create/update a bibtex file with the records found on ADS and INSPIRE, or it can fetch a list of bibtex entries specified from the command line from ADS or INSPIRE.
 
-	usage: fillbib.py [-h] [--generate] [--journal_arXiv_fallback]
-	                  [--max-num-authors MAX_NUM_AUTHORS]
-	                  [--num-authors-short NUM_AUTHORS_SHORT]
-	                  {tex,list} ...
-	
-	positional arguments:
-	  {tex,list}            Subcommands
-	    tex                 Create a bibliography for a tex document
-	    list                Create a bibliography given a list of ADS/iNSPIRE keys
-	
-	options:
-	  -h, --help            show this help message and exit
-	  --generate            Generate the BibTeX entries from the metadata (this is useful to
-	                        customize the generated BiBTeX file)
-	  --journal_arXiv_fallback
-	                        Set the journal entry to be arXiv for unpublished preprints
-	                        (iNSPIRE entries only, requres --generate)
-	  --max-num-authors MAX_NUM_AUTHORS
-	                        Include at most this many authors for each bibtex entry(iNSPIRE
-	                        entries only, requres --generate)
-	  --num-authors-short NUM_AUTHORS_SHORT
-	                        Number of authors to list if the number of authors is larger than
-	                        max_num_authors(iNSPIRE entries only, defaults to max-num-authors,
-	                        requres --generate)
 The first argument specifies the subcommand to run.
 
 * `tex` will produce a bibtex file given an `.aux` file
@@ -179,5 +155,6 @@ The idea started from [this](http://www.vallis.org/salon/) `python` course taugh
 **v1.5**: New `tex` and `list` subcommands.
 
 **v1.7**: New treatment of journal names, converting to ISO4 when available.
+
 
 
