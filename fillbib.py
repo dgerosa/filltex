@@ -15,25 +15,57 @@ import argparse
 import sys, os, re, html
 import json
 
-if sys.version_info.major>=3:
-    import urllib.request as urllib
-else:
-    import urllib
+import token
+import urllib.request
+import requests
+
+# def ads_citation(c): # download single ADS citation
+#     #f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
+#     #print("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
+#     f= urllib.urlopen("https://ui.adsabs.harvard.edu/abs/"+c+"/exportcitation")
+
+#     bib = f.read()
+#     f.close()
+#     if sys.version_info.major>=3:
+#         bib=bib.decode()
+#     bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
+#     bib=html.unescape(bib)
+
+#     return bib
 
 
-def ads_citation(c): # download single ADS citation
-    #f= urllib.urlopen("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
-    #print("http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode="+c+"&data_type=BIBTEX&db_key=AST&nocookieset=1")
-    f= urllib.urlopen("https://ui.adsabs.harvard.edu/abs/"+c+"/exportcitation")
+def ads_citation(c): 
+    """
+    Download a single ADS citation. Uses ADS_DEV_KEY if available; otherwise falls back to UI scrape.
 
-    bib = f.read()
-    f.close()
-    if sys.version_info.major>=3:
-        bib=bib.decode()
-    bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
-    bib=html.unescape(bib)
+    Parameters:
+        c (str): ADS bibcode
+
+    Returns:
+        str: BibTeX citation
+    """
+    token = os.environ.get('ADS_DEV_KEY')
+    if token:
+        # Use ADS API with token
+
+        results = requests.get(f"https://api.adsabs.harvard.edu/v1/export/bibtex/{c}", headers={'Authorization': 'Bearer ' + token})
+        bib = results.text
+
+    else:
+        print('No ADS_DEV_KEY found in environment; falling back to UI scrape.', file=sys.stderr)
+        # Fall back to UI scrape
+        url = f"https://ui.adsabs.harvard.edu/abs/{c}/exportcitation"
+        with urllib.request.urlopen(url) as f:
+            bib = f.read().decode()
+            # Extract the BibTeX entry
+            bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
+            bib = html.unescape(bib)
 
     return bib
+
+print(ads_citation("1963PhRvL..11..237K"))
+
+sys.exit(0)
 
 def inspire_citation(key,
         generate=False,
@@ -58,7 +90,7 @@ def inspire_citation(key,
     if data['hits']['total'] != 1:
         return None
     if not generate:
-        bib = urllib.urlopen(data['hits']['hits'][0]['links']['bibtex']).read()
+        bib = urllib.request.urlopen(data['hits']['hits'][0]['links']['bibtex']).read()
         inspire_key = data['hits']['hits'][0]['metadata']['texkeys'][0]
         if sys.version_info.major >= 3:
             return bib.decode().replace(inspire_key, key)
