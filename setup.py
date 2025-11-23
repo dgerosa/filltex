@@ -7,11 +7,11 @@
 from distutils.core import setup
 
 setup(name = 'filltex',
-      version = '1.7.0',
+      version = '1.7.1',
       description = 'Automatic queries to ADS and InSPIRE databases to fill LATEX bibliography',
       long_description="See: `github.com/dgerosa/filltex <https://github.com/dgerosa/filltex>`_." ,
       author = 'Davide Gerosa and Michele Vallisneri',
-      author_email = 'dgerosa@star.sr.bham.ac.uk',
+      author_email = 'davide.gerosa@unimib.it',
       url = 'https://github.com/dgerosa/filltex',
       license='MIT',
       py_modules = ['fillbib'],

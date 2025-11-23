@@ -63,10 +63,6 @@ def ads_citation(c):
 
     return bib
 
-print(ads_citation("1963PhRvL..11..237K"))
-
-sys.exit(0)
-
 def inspire_citation(key,
         generate=False,
         max_num_authors=None,

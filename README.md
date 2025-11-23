@@ -101,6 +101,14 @@ By default, the script will also change your `.tex` file if an ADS arXiv entry h
 
 At the end, `filltex` also runs [TexCount](http://app.uio.no/ifi/texcount) which counts the words in your document. 
 
+### ADS token
+
+*This is optional but strongly recommended.* The ADS API has a daily request limit, and with this script you might hit it quickly. You should create an account on [ADS](http://adsabs.harvard.edu), then go to `Settings`, then `API Token`, and generate a token. Copy that string into an environment variable called `ADS_DEV_KEY` and make it system-wide available. The easiest way is to add the following to your `.bashrc` file:
+
+```export ADS_DEV_KEY=....```
+
+`filltex` will check if a token is available and use it. If not, it will default back to a simpler scraping implementation.
+
 ### TexShop
 
 I use the [TexShop](http://pages.uoregon.edu/koch/texshop) editor, so I wrote an implementation of `filltex` for it. If you copied the `filltex.engine` file as specified above, just open your paper with [TexShop](http://pages.uoregon.edu/koch/texshop) and select ***filltex*** from the drop menu on the left. Now automagically compile your paper with `Typeset` or cmd-T. 
