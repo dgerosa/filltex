@@ -94,7 +94,7 @@ def inspire_citation(key,
             return bib.replace(inspire_key, key)
     metadata = data['hits']['hits'][0]['metadata']
 
-    doctype = metadata["document_type"][0]
+    doctype = "article" # metadata["document_type"][0]
 
     # BibTeX entry as a dictionary
     bibtex = {}
@@ -175,7 +175,7 @@ def inspire_citation(key,
     s = "@{}{{{}".format(doctype, key)
     for field, value in bibtex.items():
         s += ",\n    {} = \"{}\"".format(field, value)
-    s += "\n}"
+    s += "\n}\n"
 
     return s
 
