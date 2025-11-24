@@ -36,7 +36,7 @@ import requests
 
 def ads_citation(c): 
     """
-    Download a single ADS citation. Uses ADS_DEV_KEY if available; otherwise falls back to UI scrape.
+    Download a single ADS citation. Uses ADS_TOKEN if available; otherwise falls back to UI scrape.
 
     Parameters:
         c (str): ADS bibcode
@@ -44,7 +44,7 @@ def ads_citation(c):
     Returns:
         str: BibTeX citation
     """
-    token = os.environ.get('ADS_DEV_KEY')
+    token = os.environ.get('ADS_TOKEN')
     if token:
         # Use ADS API with token
 
@@ -52,7 +52,7 @@ def ads_citation(c):
         bib = results.text
 
     else:
-        print('No ADS_DEV_KEY found in environment; falling back to UI scrape.', file=sys.stderr)
+        print('No ADS_TOKEN found in environment; falling back to UI scrape.', file=sys.stderr)
         # Fall back to UI scrape
         url = f"https://ui.adsabs.harvard.edu/abs/{c}/exportcitation"
         with urllib.request.urlopen(url) as f:
