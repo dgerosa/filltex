@@ -388,6 +388,7 @@ def journals(bibfile):
             ####
             ['Advances in Space Research','Adv. Space Res.','Adv. Space Res.'], #ISI list not correct
             ['American Institute of Physics Conference Series','AIP Conf. Proc.','AIP Conf. Proc.'],
+            ['American Journal of Physics','Am. J. Phys.','Am. J. Phys.'],
             ['Annals of Data Science','Ann. Data Sci.','Ann. Data Sci.'],
             ['Astronomy and Computing','Astron. Comput.','Astron. Comput.'],
             ['Astroparticle Physics','Astropart. Phys.','Astropart. Phys.'],
@@ -396,6 +397,7 @@ def journals(bibfile):
             ['Bulletin of the American Astronomical Society','Bull. Am. Astron. Soc.','Bull. Am. Astron. Soc.'],
             ['Classical and Quantum Gravity','Class. Quant. Grav.','Class. Quantum Grav.'], #ISI list not correct
             ['Communications in Mathematical Physics', 'Commun. Math. Phys.', 'Commun. Math. Phys.'],
+            ['European Physical Journal C', 'Eur. Phys. J. C', 'Eur. Phys. J. C'],
             ['Frontiers in Astronomy and Space Sciences','Front. Astron. Space Sci.','Front. Astron. Space Sci.'],
             ['General Relativity and Gravitation', 'Gen. Rel. Grav.', 'Gen. Relat. Gravit.'],
             ['International Journal of Modern Physics D', 'Int. J. Mod. Phys. D', 'Int. J. Mod. Phys. D'], 
@@ -419,6 +421,8 @@ def journals(bibfile):
             ['Physical Review X', 'Phys. Rev. X', 'Phys. Rev. X'],
             ['Physics Letters A', 'Phys. Lett. A', 'Phys. Lett. A'],
             ['Proceedings of the Royal Society of London Series A', 'Proc. Roy. Soc. Lond. A', 'P. R. Soc. Lond. A'],
+            ['Proceedings of the National Academy of Science', 'Proc. Nat. Acad. Sci.', 'Proc. Natl. Acad. Sci. USA'],
+            ['Progress of Theoretical and Experimental Physics', 'PTEP', 'Prog. Theor. Exp. Phys.'],
             ['Rendiconti Lincei. Scienze Fisiche e Naturali', 'Rend. Lincei Sci. Fis. Nat.', 'Rend. Lincei-Sci. Fis.'],
             ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
             ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
