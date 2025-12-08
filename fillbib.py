@@ -82,7 +82,7 @@ def inspire_citation(key,
         use arXiv:eprint as the journal field if no journal is found
     """
     request = 'https://inspirehep.net/api/literature?q=' + key
-    data = json.loads(urllib.urlopen(request).read())
+    data = json.loads(urllib.request.urlopen(request).read())
     if data['hits']['total'] != 1:
         return None
     if not generate:
