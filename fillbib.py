@@ -386,6 +386,7 @@ def journals(bibfile):
             # [Davide Gerosa] These are journals that I personally encountered. 
             # Will keep on adding to this list.
             ####
+            ['Advances in Astronomy','Adv. Astron.','Adv. Astron.'],
             ['Advances in Space Research','Adv. Space Res.','Adv. Space Res.'], #ISI list not correct
             ['American Institute of Physics Conference Series','AIP Conf. Proc.','AIP Conf. Proc.'],
             ['American Journal of Physics','Am. J. Phys.','Am. J. Phys.'],
