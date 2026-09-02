@@ -11,7 +11,7 @@ Davide Gerosa, Michele Vallisneri, The Journal of Open Source Software 2 (2017) 
 
 Of course, you can use `filltex` to cite `filltex`! Just put `\cite{2017JOSS....2..222G}` in your tex file!
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.596848.svg)](https://doi.org/10.5281/zenodo.596848)
+DOI: [https://doi.org/10.5281/zenodo.596848](doi.org/10.5281/zenodo.596848)
 
 
 ## Installation
