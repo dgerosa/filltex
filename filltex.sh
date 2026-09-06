@@ -7,6 +7,7 @@ if [[ $1 = 'install-texshop' ]]; then
   TEXSHOP="${HOME}/Library/TeXshop/Engines/filltex.engine"
   echo "Installing texshop engine in $TEXSHOP"
   echo  ''#!/bin/bash '' > $TEXSHOP
+  echo  ''source ~/.bashrc '' > $TEXSHOP
   echo  ''export PATH=$(dirname $(which filltex)):\${PATH}'' >> $TEXSHOP
   echo  ''echo \$1 '' >> $TEXSHOP
   echo  ''FILENAME=\${1%%.*} '' >> $TEXSHOP
