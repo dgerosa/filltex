@@ -429,7 +429,7 @@ def journals(bibfile):
             ['Progress of Theoretical and Experimental Physics', 'PTEP', 'Prog. Theor. Exp. Phys.'],
             ['Rendiconti Lincei. Scienze Fisiche e Naturali', 'Rend. Lincei Sci. Fis. Nat.', 'Rend. Lincei-Sci. Fis.'],
             ['Reports on Progress in Physics', 'Rept. Prog. Phys.', 'Rep. Prog. Phys.'],
-            ['Research Notes of the American Astronomical Society', 'Res. Notes AAS','Res. Notes AAS'],
+            ['Research Notes of the American Astronomical Society', 'Research Notes of the AAS','Res. Notes AAS'],
             ['Reviews of Modern Physics', 'Rev. Mod. Phys.', 'Rev. Mod. Phys.'],
             ['Science Advances','Sci. Adv.','Sci. Adv.'],
             ['SIAM Journal on Scientific Computing','SIAM J. Sci. Comput.','SIAM J. Sci. Comput.'],
