@@ -243,7 +243,10 @@ def fillbib_tex(args):
                 try:
                     bib = ads_citation(c)
 
-                    cfound = bib.split("{")[1].split(',')[0]
+                    entry = re.match(r'\s*@[A-Za-z]+\s*\{\s*([^\s{},"]+)\s*,', bib)
+                    if entry is None:
+                        raise ValueError("ADS did not return a BibTeX entry")
+                    cfound = entry.group(1)
                     
                     if  cfound == c: # Check you got what you where looking for
                         pass
